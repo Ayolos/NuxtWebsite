@@ -457,7 +457,7 @@ const downloadCV = () => {
             class="w-full"
         >
           <div class="bg-slate-900 border border-slate-800 rounded-lg p-4 flex flex-col-reverse gap-8 items-center h-full">
-            <div class="h-[200px]">
+            <div class="sm:h-[250px] h-[300px]">
               <h4 class="font-bold">{{ item.title }}</h4>
               <p class="text-sm text-gray-400 mb-4">{{ item.description }}</p>
 <!--              <ul class="list-disc list-inside text-sm text-gray-400 mb-4">-->
