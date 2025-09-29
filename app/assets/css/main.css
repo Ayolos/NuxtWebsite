@@ -1,0 +1,14 @@
+@import "tailwindcss";
+@import "@nuxt/ui";
+
+@theme static {
+    --font-sans: 'Public Sans', sans-serif;
+
+    --color-default: #020617; /* Blue-800 */
+    --color-border: #1D283C;
+    --color-test: #8FA1B9; /* Gray-500 */
+}
+
+html {
+    scroll-behavior: smooth;
+}
