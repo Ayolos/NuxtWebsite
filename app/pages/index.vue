@@ -153,6 +153,13 @@ onMounted(() => {
   }
 })
 
+const downloadCV = () => {
+  const link = document.createElement('a');
+  link.href = '/cvAntoine.pdf'; // chemin depuis le dossier public
+  link.download = 'CV-Antoine.pdf'; // nom du fichier téléchargé
+  link.click();
+};
+
 </script>
 
 <template>
@@ -172,7 +179,7 @@ onMounted(() => {
               Développeur web fullstack, Je transforme des idées en applications web performantes et esthétiques.
             </p>
             <div class="flex lg:flex-row flex-col gap-8 items-center w-full h-full pt-6">
-              <button class="flex border border-purple-500 items-center text-purple-400 rounded-lg px-4 gap-1 py-2 bg-purple-950 hover:bg-purple-900">
+              <button @click="downloadCV" class="flex border border-purple-500 items-center text-purple-400 rounded-lg px-4 gap-1 py-2 bg-purple-950 hover:bg-purple-900">
                 Télécharger le CV
                 <UIcon name="material-symbols:download" class="size-5 ml-2"/>
               </button>
