@@ -157,7 +157,7 @@ onMounted(() => {
 
 <template>
   <div>
-    <section id="home" class="box flex min-h-[calc(100vh-4rem)] border-b border-border flex-col justify-between w-full lg:gap-18 lg:px-20 2xl:w-[1500px] 2xl:mx-auto pt-20 pb-16 sm:px-10 px-4 gap-16">
+    <section id="home" class="box flex min-h-[calc(100vh-3.5rem)] border-b border-border flex-col justify-between w-full lg:gap-18 lg:px-20 2xl:w-[1500px] 2xl:mx-auto pt-20 pb-16 sm:px-10 px-4 gap-16">
       <div class="flex lg:flex-row flex-grow flex-col-reverse justify-between lg:gap-16 gap-10 items-center h-full">
         <div class="basis-3/5">
           <div class="flex flex-col items-center lg:items-start h-full gap-4">
@@ -191,13 +191,6 @@ onMounted(() => {
                 :src="antoine1"
                 alt="Antoine"
                 class="max-w-[300px] lg:min-w-[400px] lg:max-w-[600px] lg:w-full aspect-square bg-cover p-1 mix-blend-lighten"/>
-            <!--            <div-->
-            <!--                v-show="!imageLoaded"-->
-            <!--                class="flex items-center justify-center p-1 aspect-square max-w-[300px] lg:min-w-[400px] lg:max-w-[450px] lg:w-full rounded-full bg-cover bg-background-light">-->
-            <!--              <svg class="w-10 h-10 text-gray-200 dark:text-gray-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">-->
-            <!--                <path d="M18 0H2a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2Zm-5.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm4.376 10.481A1 1 0 0 1 16 15H4a1 1 0 0 1-.895-1.447l3.5-7A1 1 0 0 1 7.468 6a.965.965 0 0 1 .9.5l2.775 4.757 1.546-1.887a1 1 0 0 1 1.618.1l2.541 4a1 1 0 0 1 .028 1.011Z"/>-->
-            <!--              </svg>-->
-            <!--            </div>-->
             <svg ref="circleRef" class="absolute inset-y-0 right-0 max-w-[300px] lg:min-w-[400px] lg:max-w-[600px] lg:w-full h-full overflow-visible">
               <circle
                   class="neon-circle"

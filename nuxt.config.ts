@@ -11,4 +11,14 @@ export default defineNuxtConfig({
     ],
   },
   modules: ['@nuxt/image', '@nuxt/ui', '@nuxt/content'],
+  app: {
+    head: {
+      title: 'Portfolio Antoine',
+      link: [
+        { rel: 'icon', type: 'image/png', href: '/favicon.png' }, // ✅ favicon principale
+        // Optionnel : version .ico
+        // { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      ]
+    }
+  }
 })

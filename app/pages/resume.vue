@@ -6,6 +6,7 @@ import ListItemContentTemplate from "@/components/listITem/ListItemContentTempla
 import ListItemCard from "@/components/listITem/ListItemCard.vue";
 import ListLogoCard from "@/components/listITem/ListLogoCard.vue";
 import ListLabelTemplate from "@/components/listITem/ListLabelTemplate.vue";
+import gsap from "gsap";
 
 const buttons = [
   {
@@ -21,10 +22,21 @@ const buttons = [
     value: 'about'
   }
 ]
+const cvSection = ref(null)
+
+onMounted(() => {
+  gsap.from(cvSection.value, {
+    duration: 1,
+    opacity: 0,
+    y: 50,           // démarre 50px plus bas
+    ease: 'power3.out'
+  })
+})
+
 </script>
 
 <template>
-    <div class="py-20 lg:py-24 lg:h-[calc(100vh-4rem)] 2xl:w-[1500px] 2xl:mx-auto lg:px-20 sm:px-10 px-4">
+    <div ref="cvSection" class="py-20 lg:py-24 lg:h-[calc(100vh-4rem)] 2xl:w-[1500px] 2xl:mx-auto lg:px-20 sm:px-10 px-4">
       <list-item :buttons="buttons">
         <template #title>
           Mon CV
