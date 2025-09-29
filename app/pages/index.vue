@@ -257,7 +257,7 @@ const downloadCV = () => {
     </section>
     <section id="competences" class="text-white px-10 py-30 border-b border-slate-800 isolate bg-gradient-to-b from-slate-900/40 to-slate-950">
       <div class="w-full lg:gap-18 lg:px-20 2xl:w-[1500px] 2xl:mx-auto">
-        <h1 class="text-3xl sm:text-4xl lg:text-5xl text-pretty tracking-tight font-bold text-center text-highlighted">Mes compétences</h1>
+        <h1 class="text-3xl text-white sm:text-4xl lg:text-5xl text-pretty tracking-tight font-bold text-center text-highlighted">Mes compétences</h1>
         <p class="text-slate-400 text-base sm:text-lg text-muted text-balance mt-3 text-center">Voici les domaines dans lesquels je construis la plupart de mes projets, alliant performance et qualité.</p>
         <div class="grid md:grid-cols-3 grid-cols-1 mt-20">
           <div class="p-10 rounded-t-xl md:rounded-t-none md:rounded-l-xl md:border-y md:border-l border-t border-x border-slate-800 bg-gradient-to-br from-green-500/10 from-5% via-transparent via-50% to-transparent">
@@ -330,7 +330,7 @@ const downloadCV = () => {
     </section>
     <section id="technologies" class="text-white px-10 py-30 border-b border-slate-800 isolate bg-gradient-to-b from-slate-900/40 to-slate-950">
       <div class="w-full lg:gap-18 lg:px-20 2xl:w-[1500px] 2xl:mx-auto">
-        <h1 class="text-3xl sm:text-4xl lg:text-5xl text-pretty tracking-tight font-bold text-center text-highlighted">Mes technologies</h1>
+        <h1 class="text-white text-3xl sm:text-4xl lg:text-5xl text-pretty tracking-tight font-bold text-center text-highlighted">Mes technologies</h1>
         <p class="text-slate-400 text-base sm:text-lg text-muted text-balance mt-3 text-center">Voici les technologies que j’utilise au quotidien et que je maitrise pour créer des applications</p>
         <div class="flex flex-col mt-20">
           <div class="text-xs bg-slate-900 border border-slate-700 w-max px-2 py-1 rounded-lg">
@@ -444,7 +444,7 @@ const downloadCV = () => {
     <section id="projets" class="mx-10 lg:gap-18 2xl:mx-auto 2xl:w-[1500px] isolate bg-gradient-to-b from-slate-900/40 to-slate-950">
       <div class="flex flex-col gap-20 w-full border-slate-800 py-30 border-x">
         <div>
-          <h1 class="text-3xl sm:text-4xl lg:text-5xl text-pretty tracking-tight font-bold text-center text-highlighted">Mes projets</h1>
+          <h1 class="text-white text-3xl sm:text-4xl lg:text-5xl text-pretty tracking-tight font-bold text-center text-highlighted">Mes projets</h1>
           <p class="text-slate-400 text-base sm:text-lg text-muted text-balance mt-6 text-center">Découvrez une sélection de mes réalisations, où je mets en avant mes compétences en développement web. Chaque projet illustre ma créativité et mon souci du détail dans la conception de solutions uniques.</p>
         </div>
         <UCarousel
