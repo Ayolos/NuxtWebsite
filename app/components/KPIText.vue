@@ -34,10 +34,10 @@ const numberElement = ref(null);
 
 <template>
   <div class="flex flex-col lg:flex-row justify-start gap-4 items-center">
-    <p ref="numberElement" class="text-6xl font-bold text-white number-animation">
+    <p ref="numberElement" class="text-6xl font-bold dark:text-white text-black number-animation">
       {{ props.number }}
     </p>
-    <p class="text-sm text-gray-400">
+    <p class="text-md dark:text-gray-400 text-slate-500">
       {{ props.text }}
     </p>
   </div>

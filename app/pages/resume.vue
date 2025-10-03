@@ -1,92 +1,77 @@
 <script setup>
 import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
 import gsap from 'gsap'
+import DefaultBadge from "~/components/badge/DefaultBadge.vue";
+
+const { t, tm } = useI18n()
 
 // Constants
-const NAVIGATION_BUTTONS = [
-  { label: 'Expérience', value: 'experience' },
-  { label: 'Formation', value: 'parcours' },
-  { label: 'Profil', value: 'about' }
-]
+const NAVIGATION_BUTTONS = computed(() => [
+  { label: t('resume.tabs.experience'), value: 'experience' },
+  { label: t('resume.tabs.education'), value: 'parcours' },
+  { label: t('resume.tabs.profile'), value: 'about' }
+])
 
-const SECTIONS = {
+const SECTIONS = computed(() => ({
   experience: {
-    title: 'Mon expérience',
-    description: `Au cours de mes études, j'ai eu la chance de faire plusieurs alternances qui m'ont permis de renforcer mes
-      compétences en développement tout en découvrant le fonctionnement du monde de l'entreprise.`,
+    title: t('resume.experience.title'),
+    description: t('resume.experience.description'),
     items: [
       {
-        period: 'Sept 2023 - Sept 2024',
-        title: 'ALTERNANCE CHEF DE PROJET, Ultimex',
-        tasks: [
-          'Création d\'un TMS (Transportation Management System)',
-          'Apprentissage de Laravel NOVA',
-          'Mise en production sur un serveur dédié',
-          'Rédaction d\'un cahier des charges'
-        ],
+        period: t('resume.experience.ultimex.period'),
+        title: t('resume.experience.ultimex.title'),
+        tasks: tm('resume.experience.ultimex.tasks').map(task => typeof task === 'string' ? task : task.body?.static || task),
         technologies: ['laravel', 'vuejs', 'tailwindcss', 'laravel NOVA']
       },
       {
-        period: 'Sept 2022 - Sept 2023',
-        title: 'ALTERNANCE DÉVELOPPEUR WEB, La Redoute',
-        tasks: [
-          'Analyse des performances du site web',
-          'Surveillance des cores web vitals à l\'aide de Dynatrace',
-          'Création de dashboard Dynatrace',
-          'Intégrateur front-end'
-        ],
+        period: t('resume.experience.laredoute.period'),
+        title: t('resume.experience.laredoute.title'),
+        tasks: tm('resume.experience.laredoute.tasks').map(task => typeof task === 'string' ? task : task.body?.static || task),
         technologies: ['javascript', 'SASS', 'jira', 'dynatrace']
       },
       {
-        period: 'Sept 2021 - Sept 2022',
-        title: 'ALTERNANCE DÉVELOPPEUR, Vallourec',
-        tasks: [
-          'Développement de script python',
-          'Apport d\'une méthodologie DEVOPS',
-          'Création de container docker',
-          'Automatisation de pipeline airflow'
-        ],
+        period: t('resume.experience.vallourec.period'),
+        title: t('resume.experience.vallourec.title'),
+        tasks: tm('resume.experience.vallourec.tasks').map(task => typeof task === 'string' ? task : task.body?.static || task),
         technologies: ['python', 'AWS', 'docker', 'airflow']
       }
     ]
   },
   parcours: {
-    title: 'Ma formation',
-    description: `Passionné d'informatique depuis mon enfance et fasciné par le monde technologique, j'ai naturellement choisi
-      de faire de cette passion mon métier.`,
+    title: t('resume.education.title'),
+    description: t('resume.education.description'),
     items: [
       {
-        period: 'Sept 2022 - Sept 2024',
-        title: 'Master 2 Développement Web',
-        description: 'UNIVERSITÉ CATHOLIQUE, LILLE'
+        period: t('resume.education.master.period'),
+        title: t('resume.education.master.title'),
+        description: t('resume.education.master.description')
       },
       {
-        period: 'Sept 2021 - Mai 2022',
-        title: 'Licence 3 Sciences du numérique',
-        description: 'UNIVERSITÉ CATHOLIQUE, LILLE'
+        period: t('resume.education.license.period'),
+        title: t('resume.education.license.title'),
+        description: t('resume.education.license.description')
       },
       {
-        period: 'Sept 2019 - Sept 2021',
-        title: 'DUT Informatique',
-        description: 'UNIVERSITÉ POLYTECHNIQUE, MAUBEUGE'
+        period: t('resume.education.dut.period'),
+        title: t('resume.education.dut.title'),
+        description: t('resume.education.dut.description')
       }
     ]
   },
   about: {
-    title: 'Mon profil',
-    description: `Passionné par les technologies, l'informatique est un choix évident pour moi. J'adore explorer les dernières
-      innovations et relever des défis techniques.`,
+    title: t('resume.profile.title'),
+    description: t('resume.profile.description'),
     items: [
-      { label: 'Nom / Prénom', content: 'Antoine André' },
-      { label: 'Téléphone', content: '07 78 19 27 97' },
-      { label: 'Age', content: '24 ans' },
-      { label: 'Localisation', content: 'Lille' },
-      { label: 'Permis', content: 'B + Voiture' },
-      { label: 'Email', content: 'ayolos14@gmail.com' },
-      { label: 'Status', content: 'Ouvert aux opportunités', isStatus: true }
+      { label: t('resume.profile.name'), content: t('resume.profile.values.name') },
+      { label: t('resume.profile.phone'), content: t('resume.profile.values.phone') },
+      { label: t('resume.profile.age'), content: t('resume.profile.values.age') },
+      { label: t('resume.profile.location'), content: t('resume.profile.values.location') },
+      { label: t('resume.profile.license'), content: t('resume.profile.values.license') },
+      { label: t('resume.profile.email'), content: t('resume.profile.values.email') },
+      { label: t('resume.profile.status'), content: t('resume.profile.statusValue'), isStatus: true }
     ]
   }
-}
+}))
 
 // State
 const cvSection = ref(null)
@@ -94,7 +79,7 @@ const activeTab = ref('experience')
 let animation = null
 
 // Computed
-const currentSection = computed(() => SECTIONS[activeTab.value])
+const currentSection = computed(() => SECTIONS.value[activeTab.value])
 
 // Methods
 const changeTab = (tab) => {
@@ -125,11 +110,11 @@ onBeforeUnmount(() => {
       <!-- Sidebar -->
       <div class="flex flex-col gap-10 basis-2/6 w-full">
         <div class="flex flex-col gap-5">
-          <h1 class="text-4xl font-bold text-white text-center lg:text-start">
-            Mon CV
+          <h1 class="text-4xl font-bold dark:text-white text-black text-center lg:text-start">
+            {{ $t('resume.title') }}
           </h1>
-          <p class="text-gray-400 text-center lg:text-start">
-            Découvrez en détail mon parcours et qui je suis
+          <p class="text-gray-500 text-center lg:text-start">
+            {{ $t('resume.subtitle') }}
           </p>
         </div>
 
@@ -139,10 +124,10 @@ onBeforeUnmount(() => {
               v-for="button in NAVIGATION_BUTTONS"
               :key="button.value"
               @click="changeTab(button.value)"
-              class="sm:w-96 w-full lg:w-full shadow-xl py-2 text-sm rounded-md transition duration-500 ease-in-out outline outline-none hover:scale-105 hover:outline-pink-500"
+              class="sm:w-96 w-full lg:w-full py-2 text-sm rounded-md transition duration-500 ease-in-out outline outline-none hover:scale-105 hover:outline-purple-500"
               :class="activeTab === button.value
-              ? 'bg-purple-950 ring ring-purple-500 text-purple-300'
-              : 'bg-[#0a0f23] text-white ring-1 ring-slate-800'"
+              ? 'dark:bg-purple-950 bg-purple-100 ring dark:ring-purple-500 ring-purple-300 dark:text-purple-300 text-purple-500'
+              : 'dark:bg-slate-900 bg-slate-100 dark:text-white text-black ring-1 dark:ring-slate-800 ring-slate-200'"
           >
             {{ button.label }}
           </button>
@@ -154,10 +139,10 @@ onBeforeUnmount(() => {
         <div :key="activeTab" class="basis-4/6 w-full h-full flex flex-col gap-7">
           <!-- Section Header -->
           <div>
-            <h1 class="text-3xl text-white font-semibold lg:text-start text-center">
+            <h1 class="text-3xl dark:text-white text-black font-semibold lg:text-start text-center">
               {{ currentSection.title }}
             </h1>
-            <p class="text-gray-400 mt-2 text-sm lg:text-start text-center">
+            <p class="text-gray-500 mt-2 text-sm lg:text-start text-center">
               {{ currentSection.description }}
             </p>
           </div>
@@ -167,24 +152,23 @@ onBeforeUnmount(() => {
             <!-- Profile Section -->
             <div
                 v-if="activeTab === 'about'"
-                class="flex flex-col bg-[#080e21] rounded-lg border border-slate-800 shadow-2xl"
+                class="flex flex-col dark:bg-slate-900 bg-slate-100 rounded-lg border dark:border-slate-800 border-slate-200"
             >
               <div
                   v-for="(info, index) in currentSection.items"
                   :key="index"
-                  :class="{ 'border-b border-slate-800': index < currentSection.items.length - 1 }"
+                  :class="{ 'border-b dark:border-slate-800 border-slate-200': index < currentSection.items.length - 1 }"
                   class="flex sm:flex-row flex-col items-center gap-6 py-6 px-12"
               >
-                <label class="text-gray-400 text-sm">
+                <label class="text-slate-500 text-sm">
                   {{ info.label }}
                 </label>
-                <p class="text-white">
-                  <span
+                <p class="dark:text-white text-black">
+                  <DefaultBadge
                       v-if="info.isStatus"
-                      class="border border-purple-500 bg-purple-950 text-purple-400 py-2 text-sm px-4 rounded-full"
                   >
                     {{ info.content }}
-                  </span>
+                  </DefaultBadge>
                   <template v-else>
                     {{ info.content }}
                   </template>
@@ -197,19 +181,19 @@ onBeforeUnmount(() => {
               <div
                   v-for="(item, index) in currentSection.items"
                   :key="index"
-                  class="flex bg-[#080E21] flex-col gap-3 shadow-xl border border-slate-800 rounded-md p-5"
+                  class="flex dark:bg-slate-900 bg-slate-100 flex-col gap-3 border dark:border-slate-800 border-slate-200 rounded-md p-5"
               >
                 <p class="text-purple-500 text-xs">
                   {{ item.period }}
                 </p>
-                <h2 class="text-white text-sm">
+                <h2 class="dark:text-white text-black text-sm">
                   {{ item.title }}
                 </h2>
 
                 <!-- Tasks List -->
                 <ul
                     v-if="item.tasks"
-                    class="list-disc list-outside pl-3.5 text-gray-500 text-sm marker:text-purple-500"
+                    class="list-disc list-outside pl-3.5 text-slate-500 text-sm marker:text-purple-500"
                 >
                   <li v-for="(task, taskIndex) in item.tasks" :key="taskIndex">
                     {{ task }}
@@ -223,13 +207,12 @@ onBeforeUnmount(() => {
 
                 <!-- Technologies -->
                 <div v-if="item.technologies" class="flex flex-wrap gap-2 mt-3">
-                  <span
+                  <DefaultBadge
                       v-for="(tech, techIndex) in item.technologies"
                       :key="techIndex"
-                      class="font-thin text-sm bg-purple-950 text-purple-400 px-3 border border-purple-600 py-0.5 rounded-full"
                   >
                     {{ tech }}
-                  </span>
+                  </DefaultBadge>
                 </div>
               </div>
             </div>

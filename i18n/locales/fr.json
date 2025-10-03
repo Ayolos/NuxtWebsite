@@ -1,0 +1,203 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "resume": "Parcours",
+    "contact": "Contact"
+  },
+  "home": {
+    "badge": "Développeur",
+    "greeting": "Hello je suis",
+    "name": "Antoine André",
+    "subtitle": "Développeur web fullstack, Je transforme des idées en applications web performantes et esthétiques.",
+    "downloadCV": "Télécharger le CV",
+    "kpi": {
+      "experience": "Années d'expérience",
+      "projects": "Projets complétés",
+      "technologies": "Technologies maîtrisées",
+      "studies": "Années d'études"
+    },
+    "collaborations": {
+      "title": "Collaborations",
+      "description": "Un aperçu des entreprises qui ont marqué mon parcours et enrichi mon expertise technique",
+      "learnMore": "En savoir plus"
+    },
+    "skills": {
+      "title": "Compétences",
+      "description": "Voici les domaines dans lesquels je construis la plupart de mes projets, alliant performance et qualité.",
+      "frontend": {
+        "title": "Front-end",
+        "description": "Maîtrise des principaux frameworks JavaScript, React et Vue.js, pour créer des interfaces modernes, réactives et ergonomiques."
+      },
+      "backend": {
+        "title": "Back-end",
+        "description": "Conception d'architectures robustes et scalables avec Laravel, Node.js et Java, permettant de développer des applications fiables et performantes."
+      },
+      "database": {
+        "title": "Bases de données",
+        "description": "Gestion et optimisation de MySQL et PostgreSQL pour garantir des systèmes rapides et efficaces."
+      }
+    },
+    "technologies": {
+      "title": "Technologies",
+      "description": "Un aperçu des technologies que j'utilise régulièrement pour créer des applications web performantes et esthétiques.",
+      "webDev": "développement web",
+      "design": "design",
+      "tools": "outils"
+    },
+    "projects": {
+      "title": "Projets",
+      "description": "Une sélection de projets personnels et professionnels qui illustrent mon expertise en développement web fullstack.",
+      "viewProject": "Voir le projet",
+      "northbotanica": {
+        "description": "Un site web vitrine développé pour promouvoir les services de Northbotanica, qui m'a permis d'approfondir Vue.js et la mise en production.",
+        "tasks": [
+          "Développement avec Vue.js",
+          "Installation et configuration serveur (CloudPanel)",
+          "Mise en production du site",
+          "Optimisation SEO (Google Search Console)"
+        ]
+      },
+      "nef": {
+        "description": "Création d'un site vitrine pour une entreprise du bâtiment, avec gestion de l'hébergement et mise en place d'un système de messagerie.",
+        "tasks": [
+          "Développement avec Vue.js",
+          "Installation et configuration serveur (CloudPanel)",
+          "Mise en production du site",
+          "Implémentation de la messagerie avec Mailcow",
+          "Optimisation SEO avec Google Search Console"
+        ]
+      },
+      "symphony": {
+        "description": "Projet de fin d'études : un réseau social autour de la musique conçu avec Laravel, offrant des fonctionnalités complètes d'interaction entre utilisateurs.",
+        "tasks": [
+          "Partage de posts, commentaires, likes et notifications",
+          "Gestion complète des profils utilisateurs",
+          "Authentification (inscription, connexion, reset mot de passe)",
+          "Développement back-end avec Laravel"
+        ]
+      },
+      "tms": {
+        "description": "Développement d'un TMS complet en alternance, avec gestion des commandes, de la facturation et des utilisateurs, via Laravel Nova.",
+        "tasks": [
+          "Conception et développement complet du projet",
+          "Utilisation de Laravel Nova pour l'interface d'administration",
+          "Gestion des commandes, clients, salariés et facturation",
+          "Rédaction d'un cahier des charges détaillé"
+        ]
+      },
+      "portfolio": {
+        "description": "Mon portfolio est une vitrine de mon savoir-faire en développement web fullstack. Il met en avant mes compétences techniques, mes projets réalisés et mon parcours professionnel.",
+        "tasks": [
+          "Point Uno",
+          "Point Dos",
+          "Point Tres"
+        ]
+      }
+    }
+  },
+  "resume": {
+    "title": "Mon CV",
+    "subtitle": "Découvrez en détail mon parcours et qui je suis",
+    "tabs": {
+      "experience": "Expérience",
+      "education": "Formation",
+      "profile": "Profil"
+    },
+    "experience": {
+      "title": "Mon expérience",
+      "description": "Au cours de mes études, j'ai eu la chance de faire plusieurs alternances qui m'ont permis de renforcer mes compétences en développement tout en découvrant le fonctionnement du monde de l'entreprise.",
+      "ultimex": {
+        "period": "Sept 2023 - Sept 2024",
+        "title": "ALTERNANCE CHEF DE PROJET, Ultimex",
+        "tasks": [
+          "Création d'un TMS (Transportation Management System)",
+          "Apprentissage de Laravel NOVA",
+          "Mise en production sur un serveur dédié",
+          "Rédaction d'un cahier des charges"
+        ]
+      },
+      "laredoute": {
+        "period": "Sept 2022 - Sept 2023",
+        "title": "ALTERNANCE DÉVELOPPEUR WEB, La Redoute",
+        "tasks": [
+          "Analyse des performances du site web",
+          "Surveillance des cores web vitals à l'aide de Dynatrace",
+          "Création de dashboard Dynatrace",
+          "Intégrateur front-end"
+        ]
+      },
+      "vallourec": {
+        "period": "Sept 2021 - Sept 2022",
+        "title": "ALTERNANCE DÉVELOPPEUR, Vallourec",
+        "tasks": [
+          "Développement de script python",
+          "Apport d'une méthodologie DEVOPS",
+          "Création de container docker",
+          "Automatisation de pipeline airflow"
+        ]
+      }
+    },
+    "education": {
+      "title": "Ma formation",
+      "description": "Passionné d'informatique depuis mon enfance et fasciné par le monde technologique, j'ai naturellement choisi de faire de cette passion mon métier.",
+      "master": {
+        "period": "Sept 2022 - Sept 2024",
+        "title": "Master 2 Développement Web",
+        "description": "UNIVERSITÉ CATHOLIQUE, LILLE"
+      },
+      "license": {
+        "period": "Sept 2021 - Mai 2022",
+        "title": "Licence 3 Sciences du numérique",
+        "description": "UNIVERSITÉ CATHOLIQUE, LILLE"
+      },
+      "dut": {
+        "period": "Sept 2019 - Sept 2021",
+        "title": "DUT Informatique",
+        "description": "UNIVERSITÉ POLYTECHNIQUE, MAUBEUGE"
+      }
+    },
+    "profile": {
+      "title": "Mon profil",
+      "description": "Passionné par les technologies, l'informatique est un choix évident pour moi. J'adore explorer les dernières innovations et relever des défis techniques.",
+      "name": "Nom / Prénom",
+      "phone": "Téléphone",
+      "age": "Age",
+      "location": "Localisation",
+      "license": "Permis",
+      "email": "Email",
+      "status": "Status",
+      "statusValue": "Ouvert aux opportunités",
+      "values": {
+        "name": "Antoine André",
+        "phone": "07 78 19 27 97",
+        "age": "24 ans",
+        "location": "Lille",
+        "license": "B + Voiture",
+        "email": "ayolos14{'@'}gmail.com"
+      }
+    }
+  },
+  "contact": {
+    "title": "Contact",
+    "description": "Si vous êtes intéressé par mon profil et souhaitez discuter d'opportunités de collaboration, n'hésitez pas à me contacter. Je serais ravi d'échanger avec vous sur mes compétences, mes projets et mes passions. Vous pouvez me joindre par email ou via mes réseaux sociaux ci-dessous.",
+    "form": {
+      "lastName": "Nom",
+      "firstName": "Prénom",
+      "email": "Adresse mail",
+      "message": "Message",
+      "send": "Envoyer"
+    },
+    "info": {
+      "phone": "Téléphone",
+      "email": "Email",
+      "location": "Lieu",
+      "linkedin": "Linkedin",
+      "values": {
+        "phone": "07 78 19 27 97",
+        "email": "ayolos14{'@'}gmail.com",
+        "location": "Lille",
+        "linkedin": "Antoine ANDRE"
+      }
+    }
+  }
+}

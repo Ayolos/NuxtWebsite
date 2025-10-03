@@ -19,7 +19,7 @@ const props = defineProps({
     type: String,
     default: 'main',
     validator: (value: string) => {
-      return ['main', 'secondary', 'danger'].includes(value)
+      return ['main', 'secondary', 'danger', 'ghost'].includes(value)
     },
   },
   bordered: {
@@ -60,10 +60,12 @@ const componentProps = computed(() => {
 
 const colorClass = computed(() => {
   switch (props.color) {
+    case 'ghost':
+      return 'bg-transparent dark:hover:bg-slate-800 hover:bg-slate-200 dark:text-slate-500 text-slate-400 dark:border-slate-800 border-slate-300'
     case 'main':
-      return 'bg-purple-950 hover:bg-purple-900 text-purple-400 border-purple-500'
+      return 'dark:bg-purple-950 bg-purple-100 dark:hover:bg-purple-900 hover:bg-purple-200 text-purple-500 dark:border-purple-500 border-purple-300'
     case 'secondary':
-      return 'bg-transparent hover:bg-slate-800 text-slate-500 border-slate-800'
+      return 'bg-transparent dark:hover:bg-slate-800 hover:bg-slate-300 dark:text-slate-500 text-slate-400 dark:border-slate-800 border-slate-300'
     case 'danger':
       return 'bg-red-600 hover:bg-red-700 text-white'
     default:

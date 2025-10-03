@@ -23,13 +23,13 @@ const handleInput = (event) => {
 
 <template>
   <div class="flex flex-col gap-2 w-full">
-    <label :for="props.value" class="text-white text-sm">
+    <label :for="props.value" class="dark:text-white text-black text-sm">
       <slot></slot>
     </label>
     <component
         :is="props.type === 'textarea' ? 'textarea' : 'input'"
         :class="typeClass"
-        class="bg-transparent resize-none text-gray-400 border border-slate-700 focus:outline-none focus:ring-0 focus:border-purple-500 rounded-lg py-2 px-4"
+        class="bg-transparent resize-none text-gray-400 border dark:border-slate-700 border-slate-300 focus:outline-none focus:ring-0 focus:border-purple-500 rounded-lg py-2 px-4"
         :type="props.type"
         :id="props.value"
         :value="props.modelValue"

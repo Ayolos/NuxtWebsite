@@ -1,34 +1,40 @@
 <script setup lang="ts">
 import NavSubLink from "~/components/nav/NavSubLink.vue";
 import { useRoute } from "vue-router";
-import { onMounted, watch, nextTick, ref } from "vue";
+import { onMounted, watch, nextTick, ref, computed } from "vue";
 import antoine from '@/assets/images/antoine.png';
+import DefaultButton from "~/components/button/DefaultButton.vue";
+
+const { t, locale, locales, setLocale } = useI18n()
 
 const activeSection = ref<string>("");
 const route = useRoute();
-const isMobileMenuOpen = ref(false); // ✅ Burger menu ouvert/fermé
+const isMobileMenuOpen = ref(false);
+const isLanguageMenuOpen = ref(false);
 
-const menu = [
+const menu = computed(() => [
   {
-    label: 'Accueil',
+    label: t('nav.home'),
     to: '/',
     children: [
-      { label: 'Collaborations', hash: '#collaborations', description: "Voici les entreprises avec lesquelles j'ai collaboré.", icon: "material-symbols-light:handshake-rounded" },
-      { label: 'Compétences', hash: '#competences', description: "Voici un aperçu de mes compétences techniques et professionnelles.", icon: "majesticons:lightbulb-shine-line" },
-      { label: 'Technologies', hash: '#technologies', description: "Voici les technologies et outils que j'utilise.", icon: "hugeicons:nano-technology" },
-      { label: 'Projets', hash: '#projets', description: "Voici quelques projets personnels que j'ai réalisés.", icon: "ix:projects" },
+      { label: t('home.collaborations.title'), hash: '#collaborations', description: t('home.collaborations.description'), icon: "material-symbols-light:handshake-rounded" },
+      { label: t('home.skills.title'), hash: '#competences', description: t('home.skills.description'), icon: "majesticons:lightbulb-shine-line" },
+      { label: t('home.technologies.title'), hash: '#technologies', description: t('home.technologies.description'), icon: "hugeicons:nano-technology" },
+      { label: t('home.projects.title'), hash: '#projets', description: t('home.projects.description'), icon: "ix:projects" },
     ]
   },
-  { label: 'Parcours', to: '/resume' },
-  { label: 'Contact', to: '/contact' }
-];
+  { label: t('nav.resume'), to: '/resume' },
+  { label: t('nav.contact'), to: '/contact' }
+]);
 
 const openMenus = ref<{ [key: string]: boolean }>({});
 const timers = ref<{ [key: string]: NodeJS.Timeout | null }>({});
 
-menu.forEach(item => {
-  if (item.children?.length) openMenus.value[item.label] = false;
-});
+watch(menu, (newMenu) => {
+  newMenu.forEach(item => {
+    if (item.children?.length) openMenus.value[item.label] = false;
+  });
+}, { immediate: true });
 
 function openMenu(label: string) {
   if (openMenus.value[label] !== undefined) {
@@ -70,11 +76,20 @@ function initScrollSpy() {
     });
   }, {
     threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5],
-    rootMargin: '-20% 0px -35% 0px' // ✅ Active quand la section est dans le tiers supérieur
+    rootMargin: '-20% 0px -35% 0px'
   });
 
   sections.forEach((s) => observer.observe(s));
 }
+
+function changeLanguage(localeCode: string) {
+  setLocale(localeCode);
+  isLanguageMenuOpen.value = false;
+}
+
+const currentLocale = computed(() => {
+  return locales.value.find(l => l.code === locale.value);
+});
 
 watch(isMobileMenuOpen, (open) => {
   if (typeof document !== "undefined") {
@@ -82,7 +97,18 @@ watch(isMobileMenuOpen, (open) => {
   }
 });
 
+const isDark = ref(false);
+
+function toggleTheme() {
+  isDark.value = !isDark.value;
+  localStorage.theme = isDark.value ? "dark" : "light";
+  document.documentElement.classList.toggle("dark", isDark.value);
+}
+
 onMounted(() => {
+  isDark.value = localStorage.theme === "dark";
+  document.documentElement.classList.toggle("dark", isDark.value);
+
   watch(
       () => route.path,
       async (path) => {
@@ -96,7 +122,6 @@ onMounted(() => {
       { immediate: true }
   );
 
-  // ✅ Écouter aussi les changements de hash
   watch(
       () => route.hash,
       (hash) => {
@@ -108,15 +133,15 @@ onMounted(() => {
 </script>
 
 <template>
-  <header class="w-full px-6 py-4 sticky top-0 bg-slate-950/90 backdrop-blur z-50 border-b border-slate-800">
-    <div class="flex justify-between items-center">
+  <header class="w-full px-6 py-3.5 sticky top-0 dark:bg-slate-950/90 bg-slate-50/90 backdrop-blur z-50 border-b dark:border-slate-800 border-slate-200">
+    <div class="grid md:grid-cols-3 grid-cols-2 items-center">
       <!-- Logo -->
       <NuxtLink to="/" class="flex items-center gap-2">
         <img :src="antoine" class="h-6">
       </NuxtLink>
 
-      <!-- 🌐 Menu Desktop -->
-      <nav class="hidden md:block">
+      <!-- Menu Desktop -->
+      <nav class="hidden md:flex items-center justify-center">
         <ul class="flex flex-row items-center gap-4">
           <li
               v-for="item in menu"
@@ -127,11 +152,11 @@ onMounted(() => {
           >
             <NuxtLink
                 :to="item.to"
-                class="text-sm flex items-center gap-1 group"
+                class="text-sm flex items-center gap-1 group subpixel-antialiased font-medium"
                 :class="[
                 isActiveLink(item.to)
                   ? 'text-purple-500'
-                  : 'text-slate-400 hover:text-white font-medium'
+                  : 'dark:text-slate-400 text-slate-500 dark:hover:text-white hover:text-black'
               ]"
             >
               {{ item.label }}
@@ -153,7 +178,7 @@ onMounted(() => {
               <ul
                   v-if="item.children?.length"
                   v-show="openMenus[item.label]"
-                  class="absolute w-[260px] p-2 mt-2 bg-slate-950 border border-slate-800 rounded-md shadow-lg"
+                  class="absolute w-[300px] p-2 mt-2 dark:bg-slate-950 bg-slate-50 border dark:border-slate-800 border-slate-200 rounded-lg shadow-lg"
               >
                 <li v-for="child in item.children" :key="child.hash">
                   <NavSubLink
@@ -170,31 +195,90 @@ onMounted(() => {
         </ul>
       </nav>
 
-      <!-- ✅ Zone de droite : GitHub + Burger -->
-      <div class="flex items-center gap-4">
-        <!-- Lien GitHub toujours visible -->
-        <NuxtLink
-            to="https://github.com/nuxt/ui"
-            target="_blank"
-            class="flex items-center gap-2 text-gray-400 hover:text-white"
-        >
-          <UIcon name="i-simple-icons-github" class="size-5" />
-        </NuxtLink>
+      <!-- Zone de droite : Sélecteur de langue + GitHub + Burger -->
+      <div class="flex items-center gap-2 justify-end">
+        <!-- Sélecteur de langue -->
+        <div class="relative">
+          <button
+              @click="isLanguageMenuOpen = !isLanguageMenuOpen"
+              class="flex items-center gap-2 px-3 py-2 text-sm text-slate-500 dark:hover:text-white hover:text-black border dark:border-slate-800 border-slate-300 rounded-md dark:hover:border-slate-700 hover:border-slate-400 transition-colors"
+          >
+            <UIcon :name="currentLocale?.flag" class="size-4" />
+            <!-- icon arrow with anim open and close -->
+            <UIcon
+                name="ic:round-keyboard-arrow-down"
+                class="size-4 transition-transform duration-200"
+                :class="isLanguageMenuOpen ? 'rotate-180' : ''"
+            />
+          </button>
 
-        <!-- ✅ Burger Button Mobile -->
+          <!-- Menu déroulant des langues -->
+          <Transition
+              name="fade"
+              enter-from-class="opacity-0 scale-90"
+              enter-to-class="opacity-100 scale-100"
+              leave-from-class="opacity-100 scale-100"
+              leave-to-class="opacity-0 scale-90"
+          >
+            <ul
+                v-show="isLanguageMenuOpen"
+                class="absolute right-0 divide-y dark:divide-slate-800 divide-slate-200 mt-2 w-32 dark:bg-slate-950 bg-slate-50 border dark:border-slate-800 border-slate-200 rounded-md shadow-lg overflow-hidden"
+            >
+              <li
+                  v-for="loc in locales"
+                  :key="loc.code"
+                  @click="changeLanguage(loc.code)"
+                  class="flex flex-row gap-2 items-center px-4 py-2 text-sm cursor-pointer transition-colors"
+                  :class="locale === loc.code
+                    ? 'dark:bg-slate-900 bg-slate-200/50'
+                    : 'text-slate-500 dark:hover:bg-slate-900 hover:bg-slate-200/50'"
+              >
+                <UIcon :name="loc.flag" class="size-4 inline-block mr-2"/>
+                {{ loc.name }}
+              </li>
+            </ul>
+          </Transition>
+        </div>
+
+        <default-button
+            size="sm"
+            color="ghost"
+            @click="toggleTheme"
+        >
+          <template #icon>
+            <UIcon
+                :name="!isDark ? 'material-symbols:light-mode-outline-rounded' : 'material-symbols:dark-mode-outline-rounded'"
+                class="size-5 text-slate-500 cursor-pointer"
+            />
+          </template>
+        </default-button>
+
+        <!-- Lien GitHub -->
+        <default-button
+          is="NuxtLink"
+          color="ghost"
+          size="sm"
+          to="https://github.com/nuxt/ui"
+          >
+          <template #icon>
+            <UIcon name="i-simple-icons-github" class="size-5 text-slate-500 cursor-pointer" />
+          </template>
+        </default-button>
+
+        <!-- Burger Button Mobile -->
         <button
             class="md:hidden flex items-center justify-center text-gray-300 hover:text-white"
             @click="isMobileMenuOpen = !isMobileMenuOpen"
         >
           <UIcon
               :name="isMobileMenuOpen ? 'mdi:close' : 'mdi:menu'"
-              class="size-6"
+              class="size-5"
           />
         </button>
       </div>
     </div>
 
-    <!-- ✅ Menu Mobile -->
+    <!-- Menu Mobile -->
     <Transition name="fade">
       <div
           v-if="isMobileMenuOpen"
@@ -233,3 +317,16 @@ onMounted(() => {
     </Transition>
   </header>
 </template>
+
+<style scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.2s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+  transform: scale(0.95);
+}
+</style>

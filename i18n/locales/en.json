@@ -1,0 +1,203 @@
+{
+  "nav": {
+    "home": "Home",
+    "resume": "Resume",
+    "contact": "Contact"
+  },
+  "home": {
+    "badge": "Developer",
+    "greeting": "Hello I'm",
+    "name": "Antoine André",
+    "subtitle": "Fullstack web developer, I transform ideas into high-performance and aesthetic web applications.",
+    "downloadCV": "Download CV",
+    "kpi": {
+      "experience": "Years of experience",
+      "projects": "Completed projects",
+      "technologies": "Mastered technologies",
+      "studies": "Years of studies"
+    },
+    "collaborations": {
+      "title": "Collaborations",
+      "description": "An overview of the companies that have shaped my journey and enriched my technical expertise",
+      "learnMore": "Learn more"
+    },
+    "skills": {
+      "title": "Skills",
+      "description": "Here are the areas in which I build most of my projects, combining performance and quality.",
+      "frontend": {
+        "title": "Front-end",
+        "description": "Mastery of the main JavaScript frameworks, React and Vue.js, to create modern, responsive and ergonomic interfaces."
+      },
+      "backend": {
+        "title": "Back-end",
+        "description": "Design of robust and scalable architectures with Laravel, Node.js and Java, allowing to develop reliable and efficient applications."
+      },
+      "database": {
+        "title": "Databases",
+        "description": "Management and optimization of MySQL and PostgreSQL to ensure fast and efficient systems."
+      }
+    },
+    "technologies": {
+      "title": "Technologies",
+      "description": "An overview of the technologies I regularly use to create high-performance and aesthetic web applications.",
+      "webDev": "web development",
+      "design": "design",
+      "tools": "tools"
+    },
+    "projects": {
+      "title": "Projects",
+      "description": "A selection of personal and professional projects that illustrate my expertise in fullstack web development.",
+      "viewProject": "View project",
+      "northbotanica": {
+        "description": "A showcase website developed to promote Northbotanica services, which allowed me to deepen Vue.js and deployment.",
+        "tasks": [
+          "Development with Vue.js",
+          "Server installation and configuration (CloudPanel)",
+          "Website deployment",
+          "SEO optimization (Google Search Console)"
+        ]
+      },
+      "nef": {
+        "description": "Creation of a showcase site for a construction company, with hosting management and implementation of a messaging system.",
+        "tasks": [
+          "Development with Vue.js",
+          "Server installation and configuration (CloudPanel)",
+          "Website deployment",
+          "Implementation of messaging with Mailcow",
+          "SEO optimization with Google Search Console"
+        ]
+      },
+      "symphony": {
+        "description": "Graduation project: a social network around music designed with Laravel, offering complete user interaction features.",
+        "tasks": [
+          "Sharing posts, comments, likes and notifications",
+          "Complete user profile management",
+          "Authentication (registration, login, password reset)",
+          "Back-end development with Laravel"
+        ]
+      },
+      "tms": {
+        "description": "Development of a complete TMS during work-study, with order management, invoicing and users, via Laravel Nova.",
+        "tasks": [
+          "Complete project design and development",
+          "Use of Laravel Nova for the administration interface",
+          "Management of orders, customers, employees and invoicing",
+          "Writing of a detailed specifications document"
+        ]
+      },
+      "portfolio": {
+        "description": "My portfolio is a showcase of my expertise in fullstack web development. It highlights my technical skills, my completed projects and my professional background.",
+        "tasks": [
+          "Point One",
+          "Point Two",
+          "Point Three"
+        ]
+      }
+    }
+  },
+  "resume": {
+    "title": "My Resume",
+    "subtitle": "Discover in detail my background and who I am",
+    "tabs": {
+      "experience": "Experience",
+      "education": "Education",
+      "profile": "Profile"
+    },
+    "experience": {
+      "title": "My experience",
+      "description": "During my studies, I was fortunate to do several internships that allowed me to strengthen my development skills while discovering how the business world works.",
+      "ultimex": {
+        "period": "Sept 2023 - Sept 2024",
+        "title": "PROJECT MANAGER INTERNSHIP, Ultimex",
+        "tasks": [
+          "Creation of a TMS (Transportation Management System)",
+          "Learning Laravel NOVA",
+          "Deployment on a dedicated server",
+          "Writing of specifications"
+        ]
+      },
+      "laredoute": {
+        "period": "Sept 2022 - Sept 2023",
+        "title": "WEB DEVELOPER INTERNSHIP, La Redoute",
+        "tasks": [
+          "Website performance analysis",
+          "Monitoring core web vitals using Dynatrace",
+          "Creation of Dynatrace dashboards",
+          "Front-end integration"
+        ]
+      },
+      "vallourec": {
+        "period": "Sept 2021 - Sept 2022",
+        "title": "DEVELOPER INTERNSHIP, Vallourec",
+        "tasks": [
+          "Python script development",
+          "Introduction of a DEVOPS methodology",
+          "Creation of docker containers",
+          "Automation of airflow pipeline"
+        ]
+      }
+    },
+    "education": {
+      "title": "My education",
+      "description": "Passionate about computer science since childhood and fascinated by the technological world, I naturally chose to make this passion my profession.",
+      "master": {
+        "period": "Sept 2022 - Sept 2024",
+        "title": "Master 2 Web Development",
+        "description": "CATHOLIC UNIVERSITY, LILLE"
+      },
+      "license": {
+        "period": "Sept 2021 - May 2022",
+        "title": "Bachelor 3 Digital Sciences",
+        "description": "CATHOLIC UNIVERSITY, LILLE"
+      },
+      "dut": {
+        "period": "Sept 2019 - Sept 2021",
+        "title": "DUT Computer Science",
+        "description": "POLYTECHNIC UNIVERSITY, MAUBEUGE"
+      }
+    },
+    "profile": {
+      "title": "My profile",
+      "description": "Passionate about technology, computer science is an obvious choice for me. I love exploring the latest innovations and taking on technical challenges.",
+      "name": "Name / First Name",
+      "phone": "Phone",
+      "age": "Age",
+      "location": "Location",
+      "license": "License",
+      "email": "Email",
+      "status": "Status",
+      "statusValue": "Open to opportunities",
+      "values": {
+        "name": "Antoine André",
+        "phone": "07 78 19 27 97",
+        "age": "24 years",
+        "location": "Lille",
+        "license": "B + Car",
+        "email": "'ayolos14{'@'}gmail.com'"
+      }
+    }
+  },
+  "contact": {
+    "title": "Contact",
+    "description": "If you are interested in my profile and would like to discuss collaboration opportunities, feel free to contact me. I would be delighted to discuss with you about my skills, my projects and my passions. You can reach me by email or via my social networks below.",
+    "form": {
+      "lastName": "Last Name",
+      "firstName": "First Name",
+      "email": "Email address",
+      "message": "Message",
+      "send": "Send"
+    },
+    "info": {
+      "phone": "Phone",
+      "email": "Email",
+      "location": "Location",
+      "linkedin": "Linkedin",
+      "values": {
+        "phone": "07 78 19 27 97",
+        "email": "'ayolos14{'@'}gmail.com'",
+        "location": "Lille",
+        "linkedin": "Antoine ANDRE"
+      }
+    }
+  }
+}

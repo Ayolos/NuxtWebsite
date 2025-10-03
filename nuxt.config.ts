@@ -10,7 +10,15 @@ export default defineNuxtConfig({
       tailwindcss(),
     ],
   },
-  modules: ['@nuxt/image', '@nuxt/ui', '@nuxt/content'],
+  modules: ['@nuxt/image', '@nuxt/ui', '@nuxt/content', '@nuxtjs/i18n'],
+  i18n: {
+    strategy: 'no_prefix',
+    defaultLocale: 'fr',
+    locales: [
+        { code: 'fr', name: 'Français', file: 'fr.json', flag: 'twemoji:flag-france' },
+        { code: 'en', name: 'English', file: 'en.json', flag: 'twemoji:flag-for-flag-united-kingdom' }
+    ]
+  },
   app: {
     head: {
       title: 'Portfolio Antoine',
