@@ -4,6 +4,9 @@
     "resume": "Parcours",
     "contact": "Contact"
   },
+  "footer": {
+    "text": "Antoine André. Tous droits réservés."
+  },
   "home": {
     "badge": "Développeur",
     "greeting": "Hello je suis",

@@ -9,13 +9,21 @@ const props = defineProps({
     required: false,
     default: false,
   },
+  bottomBorder: {
+    type: Boolean,
+    required: false,
+    default: true,
+  }
 });
 </script>
 
 <template>
-  <section :id="props.id" class="px-10 border-b dark:border-slate-800 border-slate-200 isolate bg-gradient-to-b dark:from-slate-900/40 from-slate-200/40 dark:to-slate-950 to-slate-100">
+  <section :id="props.id"
+           class="px-10 dark:border-slate-800 border-slate-200 isolate bg-gradient-to-b dark:from-slate-900/40 from-slate-200/40 dark:to-slate-950 to-slate-100"
+           :class="props.bottomBorder ? 'border-b' : ''"
+  >
     <div class="w-full lg:gap-18 2xl:w-[1500px] 2xl:mx-auto py-30"
-          :class="props.bordered ? 'border-x dark:border-slate-800 border-slate-300' : ''"
+          :class="props.bordered ? 'border-x dark:border-slate-800 border-slate-200' : ''"
     >
       <h1 class="dark:text-white text-black text-3xl sm:text-4xl lg:text-5xl text-pretty tracking-tight font-bold text-center text-highlighted">
         <slot name="title"></slot>

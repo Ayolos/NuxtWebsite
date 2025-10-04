@@ -37,7 +37,7 @@ const numberElement = ref(null);
     <p ref="numberElement" class="text-6xl font-bold dark:text-white text-black number-animation">
       {{ props.number }}
     </p>
-    <p class="text-md dark:text-gray-400 text-slate-500">
+    <p class="text-md text-center lg:text-start dark:text-gray-400 text-slate-500">
       {{ props.text }}
     </p>
   </div>

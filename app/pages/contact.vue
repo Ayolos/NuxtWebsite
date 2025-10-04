@@ -114,7 +114,7 @@ onBeforeUnmount(() => {
 <template>
   <div
       ref="contactSection"
-      class="flex-col items-center py-20 lg:py-24 h-max w-full lg:px-20 sm:px-10 px-4 2xl:w-[1500px] 2xl:mx-auto flex gap-10"
+      class="flex-col min-h-[calc(100vh-4rem)] items-center py-20 lg:py-24 h-max w-full lg:px-20 sm:px-10 px-4 2xl:w-[1500px] 2xl:mx-auto flex gap-10"
   >
     <!-- Header -->
     <div class="flex flex-col gap-4 text-center w-full">

@@ -219,7 +219,7 @@ const downloadCV = () => {
         </div>
       </div>
     </div>
-    <div class="hero hero-content grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-16 justify-between items-center rounded-3xl">
+    <div class="hero hero-content grid grid-cols-2 md:grid-cols-4 gap-16 justify-between items-start rounded-3xl">
       <k-p-i-text class="hero-content" number="5" :text="$t('home.kpi.experience')"></k-p-i-text>
       <k-p-i-text class="hero-content" number="6" :text="$t('home.kpi.projects')"></k-p-i-text>
       <k-p-i-text class="hero-content" number="9" :text="$t('home.kpi.technologies')"></k-p-i-text>
@@ -305,7 +305,7 @@ const downloadCV = () => {
       </div>
     </div>
   </section-template>
-  <section-template id="projets" bordered>
+  <section-template id="projets" :bottomBorder="false" bordered>
     <template #title>{{ $t('home.projects.title') }}</template>
     <template #description>{{ $t('home.projects.description') }}</template>
     <UCarousel
