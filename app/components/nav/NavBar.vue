@@ -17,10 +17,11 @@ const menu = computed(() => [
     label: t('nav.home'),
     to: '/',
     children: [
-      { label: t('home.collaborations.title'), hash: '#collaborations', description: t('home.collaborations.description'), icon: "material-symbols-light:handshake-rounded" },
-      { label: t('home.skills.title'), hash: '#competences', description: t('home.skills.description'), icon: "majesticons:lightbulb-shine-line" },
-      { label: t('home.technologies.title'), hash: '#technologies', description: t('home.technologies.description'), icon: "hugeicons:nano-technology" },
-      { label: t('home.projects.title'), hash: '#projets', description: t('home.projects.description'), icon: "ix:projects" },
+      { label: t('nav.subNav.collaborations.title'), hash: '#collaborations', description: t('nav.subNav.collaborations.description'), icon: "material-symbols-light:handshake-rounded" },
+      { label: t('nav.subNav.aboutMe.title'), hash: '#aboutMe', description: t('nav.subNav.aboutMe.description'), icon: "majesticons:lightbulb-shine-line" },
+      { label: t('nav.subNav.skills.title'), hash: '#competences', description: t('nav.subNav.skills.description'), icon: "mdi:account-circle-outline" },
+      { label: t('nav.subNav.technologies.title'), hash: '#technologies', description: t('nav.subNav.technologies.description'), icon: "hugeicons:nano-technology" },
+      { label: t('nav.subNav.projects.title'), hash: '#projets', description: t('nav.subNav.projects.description'), icon: "ix:projects" },
     ]
   },
   { label: t('nav.resume'), to: '/resume' },

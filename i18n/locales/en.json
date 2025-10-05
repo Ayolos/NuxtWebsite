@@ -2,7 +2,29 @@
   "nav": {
     "home": "Home",
     "resume": "Resume",
-    "contact": "Contact"
+    "contact": "Contact",
+    "subNav": {
+      "collaborations": {
+        "title": "Collaborations",
+        "description": "An overview of the companies that have shaped my journey and enriched my technical expertise"
+      },
+      "aboutMe": {
+        "title": "Work Philosophy",
+        "description": "My way of working is based on a simple idea: doing things with care and intention. I give as much importance to the code as to the clarity of exchanges, to the quality of the user experience as to the satisfaction of my collaborators. These principles guide me every day to design projects that are both reliable, elegant and human."
+      },
+      "skills": {
+        "title": "Skills",
+        "description": "Here are the areas in which I build most of my projects, combining performance and quality."
+      },
+      "technologies": {
+        "title": "Technologies",
+        "description": "An overview of the technologies I regularly use to create high-performance and aesthetic web applications."
+      },
+      "projects": {
+        "title": "Projects",
+        "description": "A selection of personal and professional projects that illustrate my expertise in fullstack web development."
+      }
+    }
   },
   "footer": {
     "text": "Antoine André. All rights reserved."
@@ -23,6 +45,33 @@
       "title": "Collaborations",
       "description": "An overview of the companies that have shaped my journey and enriched my technical expertise",
       "learnMore": "Learn more"
+    },
+    "aboutMe": {
+      "title": "Work Philosophy",
+      "description": "My way of working is based on a simple idea: doing things with care and intention. I give as much importance to the code as to the clarity of exchanges, to the quality of the user experience as to the satisfaction of my collaborators. These principles guide me every day to design projects that are both reliable, elegant and human.",
+      "words": [
+        "Simplicity",
+        "Collaboration",
+        "Learning",
+        "Experience",
+        "Curiosity",
+        "Sharing",
+        "Clarity",
+        "Precision",
+        "Empathy"
+      ],
+      "quality": {
+        "title": "Quality",
+        "description": "I strive to produce clean, maintainable, and well-documented code, following industry best practices."
+      },
+      "learning": {
+        "title": "Continuous Learning",
+        "description": "The field of technology evolves rapidly, and I am committed to staying up-to-date with the latest trends and tools."
+      },
+      "problemSolving": {
+        "title": "Problem Solving",
+        "description": "I enjoy taking on technical challenges and finding innovative solutions to meet user needs."
+      }
     },
     "skills": {
       "title": "Skills",

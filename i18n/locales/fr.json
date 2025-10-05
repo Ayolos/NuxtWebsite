@@ -2,7 +2,29 @@
   "nav": {
     "home": "Accueil",
     "resume": "Parcours",
-    "contact": "Contact"
+    "contact": "Contact",
+    "subNav": {
+      "collaborations": {
+        "title": "Collaborations",
+        "description": "Un aperçu des entreprises qui ont marqué mon parcours et enrichi mon expertise technique"
+      },
+      "aboutMe": {
+        "title": "Ma philosophie de travail",
+        "description": "Ma manière de travailler repose sur une idée simple : faire les choses avec soin et intention."
+      },
+      "skills": {
+        "title": "Compétences",
+        "description": "Voici les domaines dans lesquels je construis la plupart de mes projets, alliant performance et qualité."
+      },
+      "technologies": {
+        "title": "Technologies",
+        "description": "Un aperçu des technologies que j'utilise régulièrement pour créer des applications web performantes et esthétiques."
+      },
+      "projects": {
+        "title": "Projets",
+        "description": "Une sélection de projets personnels et professionnels qui illustrent mon expertise en développement web fullstack."
+      }
+    }
   },
   "footer": {
     "text": "Antoine André. Tous droits réservés."
@@ -23,6 +45,33 @@
       "title": "Collaborations",
       "description": "Un aperçu des entreprises qui ont marqué mon parcours et enrichi mon expertise technique",
       "learnMore": "En savoir plus"
+    },
+    "aboutMe": {
+      "title": "Philosophie de travail",
+      "description": "Ma manière de travailler repose sur une idée simple : faire les choses avec soin et intention. J’accorde autant d’importance au code qu’à la clarté des échanges, à la qualité de l’expérience utilisateur qu’à la satisfaction de mes collaborateurs. Ces principes me guident chaque jour pour concevoir des projets à la fois fiables, élégants et humains.",
+      "words": [
+        "Simplicité",
+        "Collaboration",
+        "Apprentissage",
+        "Expérience",
+        "Curiosité",
+        "Partage",
+        "Clarté",
+        "Précision",
+        "Empathie"
+      ],
+      "quality": {
+        "title": "Qualité",
+        "description": "Je m'efforce de produire un code propre, maintenable et bien documenté, en suivant les meilleures pratiques de l'industrie."
+      },
+      "learning": {
+        "title": "Apprentissage continu",
+        "description": "Le domaine de la technologie évolue rapidement, et je m'engage à rester à jour avec les dernières tendances et outils."
+      },
+      "problemSolving": {
+        "title": "Résolution de problèmes",
+        "description": "J'aime relever des défis techniques et trouver des solutions innovantes pour répondre aux besoins des utilisateurs."
+      }
     },
     "skills": {
       "title": "Compétences",

@@ -138,6 +138,26 @@ const technoItems = [
   }
 ]
 
+const aboutMeItems = computed(() => [
+  {
+    icon: 'mdi:account-circle',
+    title: t('home.aboutMe.quality.title'),
+    description: t('home.aboutMe.quality.description')
+  },
+  {
+    icon: 'mdi:handshake-outline',
+    title: t('home.aboutMe.learning.title'),
+    description: t('home.aboutMe.learning.description')
+  },
+  {
+    icon: 'mdi:rocket-outline',
+    title: t('home.aboutMe.problemSolving.title'),
+    description: t('home.aboutMe.problemSolving.description')
+  }
+])
+
+const values = computed(() => tm('home.aboutMe.words').map(item => item.body.static))
+
 onMounted(() => {
   if (customSection.value) {
     createFadeUpAnimation(customSection.value.querySelector('.custom-content'), {
@@ -229,13 +249,15 @@ const downloadCV = () => {
   <section-template id="collaborations">
     <template #title>{{ $t('home.collaborations.title') }}</template>
     <template #description>{{ $t('home.collaborations.description') }}</template>
-    <div class="flex justify-center mt-6">
-      <default-button is="NuxtLink" bordered size="sm" to="/resume">
-        {{ $t('home.collaborations.learnMore') }}
-        <UIcon class="size-5" name="material-symbols:arrow-right-alt"/>
-      </default-button>
-    </div>
-    <div class="flex section-content fade-up flex-row justify-center sm:gap-20 gap-2 mt-20">
+    <template #extra>
+      <div class="flex justify-center mt-4">
+        <default-button is="NuxtLink" bordered size="sm" to="/resume">
+          {{ $t('home.collaborations.learnMore') }}
+          <UIcon class="size-5" name="material-symbols:arrow-right-alt"/>
+        </default-button>
+      </div>
+    </template>
+    <div class="flex section-content fade-up flex-row justify-center sm:gap-20 gap-2">
       <div class="flex flex-row gap-6 card-item">
         <div v-for="companyItem in companyItems">
           <div class="dark:bg-slate-800/50 bg-slate-200/50 border dark:border-slate-800 border-slate-200 rounded-lg sm:p-6 p-3 flex items-center">
@@ -249,10 +271,51 @@ const downloadCV = () => {
       </div>
     </div>
   </section-template>
+  <section-template id="aboutMe" type="row" align="left" basis="1/2">
+    <template #title>{{ $t('home.aboutMe.title') }}</template>
+    <template #description>{{ $t('home.aboutMe.description') }}</template>
+    <template #extra>
+      <div class="w-full overflow-hidden relative mt-10 py-4 flex">
+        <div class="flex animate-scroll whitespace-nowrap dark:text-slate-200 text-slate-800 text-lg font-bold">
+      <span
+          v-for="(value, index) in values"
+          :key="index"
+          class="mx-6 opacity-80 hover:opacity-100 transition-opacity duration-300"
+      >
+        {{ value }}
+      </span>
+
+          <!-- Clone pour créer l'effet de boucle infinie -->
+          <span
+              v-for="(value, index) in values"
+              :key="'clone-' + index"
+              class="mx-6 opacity-80 hover:opacity-100 transition-opacity duration-300"
+          >
+        {{ value }}
+      </span>
+        </div>
+
+        <!-- léger dégradé sur les bords pour un effet "fondu" -->
+        <div class="absolute left-0 top-0 h-full w-26 bg-gradient-to-r dark:from-slate-950 from-slate-50 to-transparent pointer-events-none"></div>
+        <div class="absolute right-0 top-0 h-full w-26 bg-gradient-to-l dark:from-slate-950 from-slate-50 to-transparent pointer-events-none"></div>
+      </div>
+    </template>
+    <div class="flex flex-col gap-6 dark:bg-slate-900 bg-slate-100 border dark:border-slate-800 border-slate-300 px-8 py-10 rounded-lg">
+      <div v-for="aboutItem in aboutMeItems" class="flex flex-row gap-4 items-center">
+        <div class="dark:bg-slate-950 bg-slate-50 flex p-2 rounded-lg border dark:border-slate-800 border-slate-200">
+          <UIcon :name="aboutItem.icon" class="size-6 dark:text-white text-black"/>
+        </div>
+        <div>
+          <h1 class="font-bold">{{ aboutItem.title }}</h1>
+          <p class="text-slate-500">{{ aboutItem.description }}</p>
+        </div>
+      </div>
+    </div>
+  </section-template>
   <section-template id="competences">
     <template #title>{{ $t('home.skills.title') }}</template>
     <template #description>{{ $t('home.skills.description') }}</template>
-    <div class="grid md:grid-cols-3 grid-cols-1 mt-20">
+    <div class="grid md:grid-cols-3 grid-cols-1">
       <div
           v-for="(skillsItem, index) in skillsItems"
           :key="index"
@@ -286,7 +349,7 @@ const downloadCV = () => {
   <section-template id="technologies">
     <template #title>{{ $t('home.technologies.title') }}</template>
     <template #description>{{ $t('home.technologies.description') }}</template>
-    <div v-for="technoItem in technoItems" class="flex flex-col mt-20">
+    <div v-for="technoItem in technoItems" class="flex flex-col w-full">
       <div class="text-xs dark:bg-slate-900 bg-slate-200 border dark:border-slate-700 border-slate-300 dark:text-white text-black w-max px-2 py-1 rounded-lg">
         {{ technoItem.title }}
       </div>
@@ -313,7 +376,7 @@ const downloadCV = () => {
         :autoplay="{ delay: 600000 }"
         :items="items"
         :ui="{ item: 'md:basis-1/2' }"
-        class="w-full mt-10"
+        class="w-full"
         dots
         loop
     >
@@ -349,5 +412,19 @@ const downloadCV = () => {
 <style scoped>
 .neon-circle {
   filter: drop-shadow(0 0 5px #ec4899);
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll {
+  display: inline-flex;
+  animation: scroll 40s linear infinite;
 }
 </style>
