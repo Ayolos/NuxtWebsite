@@ -258,7 +258,7 @@ onMounted(() => {
           is="NuxtLink"
           color="ghost"
           size="sm"
-          to="https://github.com/nuxt/ui"
+          to="https://github.com/Ayolos"
           >
           <template #icon>
             <UIcon name="i-simple-icons-github" class="size-5 text-slate-500 cursor-pointer" />
@@ -267,7 +267,7 @@ onMounted(() => {
 
         <!-- Burger Button Mobile -->
         <button
-            class="md:hidden flex items-center justify-center text-gray-300 hover:text-white"
+            class="md:hidden flex items-center justify-center text-slate-500 hover:text-white"
             @click="isMobileMenuOpen = !isMobileMenuOpen"
         >
           <UIcon
@@ -282,14 +282,14 @@ onMounted(() => {
     <Transition name="fade">
       <div
           v-if="isMobileMenuOpen"
-          class="md:hidden absolute left-0 top-full h-screen w-full bg-slate-950 border-t border-slate-800 p-6 flex flex-col gap-4"
+          class="md:hidden absolute left-0 top-full h-screen w-full dark:bg-slate-950 bg-slate-50 border-t dark:border-slate-800 border-slate-300 p-6 flex flex-col gap-4"
       >
         <ul class="flex flex-col gap-3">
           <li v-for="item in menu" :key="item.label">
             <NuxtLink
                 :to="item.to"
                 @click="isMobileMenuOpen = false"
-                class="block text-gray-300 font-medium px-2.5 py-1.5 text-xs uppercase"
+                class="block text-slate-500 font-medium px-2.5 py-1.5 text-xs uppercase"
                 :class="isActiveLink(item.to) ? 'text-purple-500' : 'hover:text-white' "
             >
               {{ item.label }}
@@ -298,15 +298,15 @@ onMounted(() => {
             <!-- Sous-menu mobile -->
             <ul v-if="item.children?.length" class="flex flex-col list-none ml-5">
               <li v-for="child in item.children" :key="child.hash" class="pl-2 border-l"
-                  :class="isActive(child.hash) ? 'border-purple-500' : 'border-slate-700'"
+                  :class="isActive(child.hash) ? 'border-purple-500' : 'dark:border-slate-700 border-slate-300'"
               >
                 <NuxtLink
                     :to="'/' + child.hash"
                     @click="isMobileMenuOpen = false"
-                    class="flex gap-2 items-center text-sm text-gray-400 transition-colors px-2.5 py-1.5"
-                    :class="isActive(child.hash) ? 'text-purple-500' : 'hover:text-white' "
+                    class="flex gap-2 items-center text-sm transition-colors px-2.5 py-1.5"
+                    :class="isActive(child.hash) ? 'text-purple-500' : 'hover:text-white text-slate-500' "
                 >
-                  <UIcon :name="child.icon" class="size-5"></UIcon>
+                  <UIcon :name="child.icon" class="size-5" :class="isActive(child.hash) ? '' : 'dark:text-slate-700 text-slate-400'"></UIcon>
                   {{ child.label }}
                 </NuxtLink>
               </li>
