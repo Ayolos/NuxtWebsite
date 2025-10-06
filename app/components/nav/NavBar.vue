@@ -25,6 +25,7 @@ const menu = computed(() => [
     ]
   },
   { label: t('nav.resume'), to: '/resume' },
+  { label: t('nav.passion'), to: '/passion' },
   { label: t('nav.contact'), to: '/contact' }
 ]);
 

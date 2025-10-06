@@ -2,6 +2,13 @@
 import tailwindcss from "@tailwindcss/vite";
 
 export default defineNuxtConfig({
+  runtimeConfig: {
+    spotifyClientId: process.env.SPOTIFY_CLIENT_ID,
+    spotifyClientSecret: process.env.SPOTIFY_CLIENT_SECRET,
+    spotifyRedirectUri: process.env.SPOTIFY_REDIRECT_URI,
+    spotifyRefreshToken: process.env.SPOTIFY_REFRESH_TOKEN,
+
+  },
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
   css: ['~/assets/css/main.css'],
