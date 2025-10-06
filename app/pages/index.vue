@@ -156,7 +156,7 @@ const aboutMeItems = computed(() => [
   }
 ])
 
-const values = computed(() => tm('home.aboutMe.words').map(item => item.static))
+const values = computed(() => tm('home.aboutMe.words').map(item => typeof item === 'string' ? item : item.body?.static || item))
 
 onMounted(() => {
   if (customSection.value) {
