@@ -224,7 +224,7 @@ onMounted(() => {
           >
             <ul
                 v-show="isLanguageMenuOpen"
-                class="absolute right-0 mt-2 w-max dark:bg-slate-950 bg-slate-50 border dark:border-slate-800 border-slate-200 rounded-md shadow-lg overflow-hidden"
+                class="z-50 absolute right-0 mt-2 w-max dark:bg-slate-950 bg-slate-50 border dark:border-slate-800 border-slate-200 rounded-md shadow-lg overflow-hidden"
             >
               <li
                   v-for="loc in locales"
