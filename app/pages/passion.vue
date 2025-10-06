@@ -37,6 +37,7 @@ const iframeLoaded = ref<Record<string, boolean>>({});
             class="flex flex-col items-center text-center"
         >
           <img
+              v-if="a.images && a.images.length"
               :src="a.images[0]?.url"
               alt=""
               class="w-full aspect-square rounded-xl"
