@@ -277,6 +277,7 @@ onMounted(() => {
             is="button"
             color="ghost"
             size="sm"
+            class="md:hidden"
             @click="isMobileMenuOpen = !isMobileMenuOpen"
         >
           <template #icon>
