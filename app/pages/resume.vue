@@ -142,7 +142,7 @@ onBeforeUnmount(() => {
             <h1 class="text-3xl dark:text-white text-black font-semibold lg:text-start text-center">
               {{ currentSection.title }}
             </h1>
-            <p class="text-gray-500 mt-2 text-sm lg:text-start text-center">
+            <p class="text-gray-500 mt-2 lg:text-start text-center">
               {{ currentSection.description }}
             </p>
           </div>

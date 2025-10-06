@@ -11,7 +11,7 @@
       },
       "aboutMe": {
         "title": "Work Philosophy",
-        "description": "My way of working is based on a simple idea: doing things with care and intention. I give as much importance to the code as to the clarity of exchanges, to the quality of the user experience as to the satisfaction of my collaborators. These principles guide me every day to design projects that are both reliable, elegant and human."
+        "description": "My way of working is based on a simple idea: doing things with care and intention."
       },
       "skills": {
         "title": "Skills",
@@ -226,7 +226,7 @@
         "age": "24 years",
         "location": "Lille",
         "license": "B + Car",
-        "email": "'ayolos14{'@'}gmail.com'"
+        "email": "ayolos14{'@'}gmail.com"
       }
     }
   },
@@ -255,7 +255,7 @@
       "linkedin": "Linkedin",
       "values": {
         "phone": "07 78 19 27 97",
-        "email": "'ayolos14{'@'}gmail.com'",
+        "email": "ayolos14{'@'}gmail.com",
         "location": "Lille",
         "linkedin": "Antoine ANDRE"
       }
