@@ -29,13 +29,13 @@ export default defineEventHandler(async () => {
     const accessToken = tokenData.access_token
 
     // 2️⃣ Récupère tes Top Tracks
-    const topTracks = await $fetch('https://api.spotify.com/v1/me/top/artists?limit=6', {
+    const topArtists = await $fetch('https://api.spotify.com/v1/me/top/artists?limit=6', {
         headers: { Authorization: `Bearer ${accessToken}` }
     })
 
     // 3️⃣ Cache la réponse
-    cache = topTracks
+    cache = topArtists
     cacheTimestamp = now
 
-    return topTracks
+    return topArtists
 })
