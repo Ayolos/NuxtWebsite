@@ -180,7 +180,7 @@ const downloadCV = () => {
 
 <template>
   <section id="home"
-           class="box flex min-h-[calc(100vh-4rem)] border-b dark:border-slate-800 border-slate-200 flex-col justify-between w-full lg:gap-18 lg:px-20 2xl:w-[1500px] 2xl:mx-auto pt-20 pb-16 sm:px-10 px-4 gap-16">
+           class="box flex min-h-[calc(100vh-4rem)] border-b dark:border-slate-800 border-slate-200 flex-col justify-between w-full lg:gap-18 lg:px-20 2xl:w-[1500px] 2xl:mx-auto md:pt-20 pt-10 pb-16 sm:px-10 px-4 gap-16">
     <div class="flex lg:flex-row flex-grow flex-col-reverse justify-between lg:gap-16 gap-10 items-center h-full">
       <div class="basis-3/5">
         <div class="flex flex-col items-center lg:items-start h-full gap-4">
@@ -222,8 +222,8 @@ const downloadCV = () => {
           <img
               :src="antoine1"
               alt="Antoine"
-              class="max-w-[300px] lg:min-w-[400px] lg:max-w-[600px] lg:w-full aspect-square bg-cover p-1 dark:mix-blend-lighten"/>
-          <svg ref="circleRef" class="absolute inset-y-0 right-0 max-w-[300px] lg:min-w-[400px] lg:max-w-[600px] lg:w-full h-full overflow-visible">
+              class="w-[200px] md:w-[300px] lg:min-w-[400px] lg:max-w-[600px] lg:w-full aspect-square bg-cover p-1 dark:mix-blend-lighten"/>
+          <svg ref="circleRef" class="absolute inset-y-0 right-0 w-[200px] md:w-[300px] lg:min-w-[400px] lg:max-w-[600px] lg:w-full h-full overflow-visible">
             <circle
                 class="neon-circle"
                 cx="50%"
