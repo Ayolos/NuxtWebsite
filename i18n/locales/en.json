@@ -230,6 +230,14 @@
       }
     }
   },
+  "passion": {
+    "title": "My Passion",
+    "description": "Beyond my professional skills, I am passionate about technology and its impact on our daily lives. I love exploring new innovations, understanding how they work and imagining how they can improve our world. This passion drives me to constantly learn and stay up-to-date with the latest trends in the tech world.",
+    "music": {
+      "topArtists": "Top Artists",
+      "topTracks": "Top Tracks"
+    }
+  },
   "contact": {
     "title": "Contact",
     "description": "If you are interested in my profile and would like to discuss collaboration opportunities, feel free to contact me. I would be delighted to discuss with you about my skills, my projects and my passions. You can reach me by email or via my social networks below.",

@@ -230,6 +230,14 @@
       }
     }
   },
+  "passion": {
+    "title": "Mes passions",
+    "description": "Ma vie est rythmée par la curiosité et le son. La musique m’aide à trouver le juste tempo entre inspiration, concentration et expression. Elle m’accompagne dans mes projets, guide ma créativité et me rappelle que toute bonne idée commence par une émotion.",
+    "music": {
+      "topArtists": "Mes tops artistes",
+      "topTracks": "Mes tops musiques"
+    }
+  },
   "contact": {
     "title": "Contact",
     "description": "Si vous êtes intéressé par mon profil et souhaitez discuter d'opportunités de collaboration, n'hésitez pas à me contacter. Je serais ravi d'échanger avec vous sur mes compétences, mes projets et mes passions. Vous pouvez me joindre par email ou via mes réseaux sociaux ci-dessous.",

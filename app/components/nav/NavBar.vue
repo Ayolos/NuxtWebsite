@@ -224,7 +224,7 @@ onMounted(() => {
           >
             <ul
                 v-show="isLanguageMenuOpen"
-                class="absolute right-0 divide-y dark:divide-slate-800 divide-slate-200 mt-2 w-32 dark:bg-slate-950 bg-slate-50 border dark:border-slate-800 border-slate-200 rounded-md shadow-lg overflow-hidden"
+                class="absolute right-0 mt-2 w-max dark:bg-slate-950 bg-slate-50 border dark:border-slate-800 border-slate-200 rounded-md shadow-lg overflow-hidden"
             >
               <li
                   v-for="loc in locales"
@@ -232,11 +232,16 @@ onMounted(() => {
                   @click="changeLanguage(loc.code)"
                   class="flex flex-row gap-2 items-center px-4 py-2 text-sm cursor-pointer transition-colors"
                   :class="locale === loc.code
-                    ? 'dark:bg-slate-900 bg-slate-200/50'
+                    ? ''
                     : 'text-slate-500 dark:hover:bg-slate-900 hover:bg-slate-200/50'"
               >
                 <UIcon :name="loc.flag" class="size-4 inline-block mr-2"/>
                 {{ loc.name }}
+                <UIcon
+                    v-if="locale === loc.code"
+                    name="material-symbols:check"
+                    class="size-4 ml-auto text-slate-500"
+                />
               </li>
             </ul>
           </Transition>
@@ -268,15 +273,19 @@ onMounted(() => {
         </default-button>
 
         <!-- Burger Button Mobile -->
-        <button
-            class="md:hidden flex items-center justify-center text-slate-500 hover:text-white"
+        <default-button
+            is="button"
+            color="ghost"
+            size="sm"
             @click="isMobileMenuOpen = !isMobileMenuOpen"
         >
-          <UIcon
-              :name="isMobileMenuOpen ? 'mdi:close' : 'mdi:menu'"
-              class="size-5"
-          />
-        </button>
+          <template #icon>
+            <UIcon
+                :name="isMobileMenuOpen ? 'mdi:close' : 'mdi:menu'"
+                class="size-5 text-slate-500 cursor-pointer"
+            />
+          </template>
+        </default-button>
       </div>
     </div>
 

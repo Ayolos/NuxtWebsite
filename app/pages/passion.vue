@@ -10,21 +10,32 @@ fetchTopTracks();
 
 // Suivre le chargement de chaque iframe Spotify
 const iframeLoaded = ref<Record<string, boolean>>({});
+
+function onIframeLoad(id) {
+  // Forcer un minimum de délai pour que le lecteur Spotify soit prêt
+  setTimeout(() => {
+    iframeLoaded.value[id] = true
+  }, 500) // 500ms, tu peux ajuster
+}
+
+const { t } = useI18n();
 </script>
 
 <template>
-  <div class="lg:px-30 px-10 pb-20">
+  <div class="lg:px-20 sm:px-10 px-5 2xl:w-[1500px] 2xl:mx-auto">
     <div class="text-center my-20 space-y-5">
-      <h1 class="text-5xl font-bold dark:text-white text-black">Mes Passions</h1>
+      <h1 class="text-5xl font-bold dark:text-white text-black">{{ t('passion.title') }} </h1>
       <p class="text-lg text-slate-500">
-        Ma vie est rythmée par la curiosité et le son. La musique m’aide à trouver le juste tempo entre inspiration, concentration et expression. Elle m’accompagne dans mes projets, guide ma créativité et me rappelle que toute bonne idée commence par une émotion.
+        {{ t('passion.description') }}
       </p>
     </div>
 
     <!-- === Top artistes === -->
     <div class="mt-10">
-      <h3 class="text-2xl font-semibold dark:text-white text-black">Mes tops artistes</h3>
-      <div v-if="loading" class="mt-4 text-gray-400">Chargement...</div>
+      <h3 class="text-2xl font-semibold dark:text-white text-black">{{ t('passion.music.topArtists') }}</h3>
+      <div v-if="loading" class="my-20 text-center">
+        <UIcon name="eos-icons:bubble-loading" class="size-20 text-purple-500" />
+      </div>
       <div v-if="error" class="mt-4 text-red-500">{{ error }}</div>
 
       <div
@@ -48,9 +59,11 @@ const iframeLoaded = ref<Record<string, boolean>>({});
     </div>
 
     <!-- === Top musiques === -->
-    <div class="mt-20">
-      <h3 class="text-2xl font-semibold dark:text-white text-black">Mes tops musiques</h3>
-      <div v-if="loading" class="mt-4 text-gray-400">Chargement...</div>
+    <div class="my-20">
+      <h3 class="text-2xl font-semibold dark:text-white text-black">{{ t('passion.music.topTracks') }}</h3>
+      <div v-if="loading" class="my-20 text-center">
+        <UIcon name="eos-icons:bubble-loading" class="size-20 text-purple-500" />
+      </div>
       <div v-if="error" class="mt-4 text-red-500">{{ error }}</div>
 
       <div
@@ -78,7 +91,7 @@ const iframeLoaded = ref<Record<string, boolean>>({});
               loading="lazy"
               class="rounded-xl bg-transparent transition-all duration-500 opacity-0"
               :class="{ 'opacity-100': iframeLoaded[t.id] }"
-              @load="iframeLoaded[t.id] = true"
+              @load="onIframeLoad(t.id)"
           ></iframe>
         </div>
       </div>

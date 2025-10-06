@@ -104,7 +104,7 @@ onBeforeUnmount(() => {
 <template>
   <div
       ref="cvSection"
-      class="py-20 lg:py-24 lg:h-[calc(100vh-4rem)] 2xl:w-[1500px] 2xl:mx-auto lg:px-20 sm:px-10 px-4"
+      class="py-20 lg:py-24 lg:h-[calc(100vh-4rem)] 2xl:w-[1500px] 2xl:mx-auto lg:px-20 sm:px-10 px-5"
   >
     <div class="flex lg:flex-row flex-col gap-14 justify-center h-full">
       <!-- Sidebar -->
@@ -119,12 +119,12 @@ onBeforeUnmount(() => {
         </div>
 
         <!-- Navigation Buttons -->
-        <div class="flex flex-col gap-4 lg:w-full w-full items-center">
+        <div class="flex flex-col gap-4 w-full items-center">
           <button
               v-for="button in NAVIGATION_BUTTONS"
               :key="button.value"
               @click="changeTab(button.value)"
-              class="sm:w-96 w-full lg:w-full py-2 text-sm rounded-md transition duration-500 ease-in-out outline outline-none hover:scale-105 hover:outline-purple-500"
+              class="w-full py-2 text-sm rounded-md transition duration-500 ease-in-out outline outline-none hover:scale-105 hover:outline-purple-500"
               :class="activeTab === button.value
               ? 'dark:bg-purple-950 bg-purple-100 ring dark:ring-purple-500 ring-purple-300 dark:text-purple-300 text-purple-500'
               : 'dark:bg-slate-900 bg-slate-100 dark:text-white text-black ring-1 dark:ring-slate-800 ring-slate-200'"
