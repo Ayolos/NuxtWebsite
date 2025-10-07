@@ -158,7 +158,37 @@ const aboutMeItems = computed(() => [
 
 const values = computed(() => tm('home.aboutMe.words').map(item => typeof item === 'string' ? item : item.body?.static || item))
 
+
+const {
+  typewriter, rotateInfinite, cascadeIn
+} = useGsapAnimations();
+
+const typewriterCleanups = ref([]);
+
 onMounted(() => {
+  const nameAnim = typewriter('.typewritter', {
+    duration: 2,
+    delay: 0.1,
+    loop: true,
+    loopDelay: 4,
+    cursor: true,
+    preserveSpace: true
+  });
+
+  if (nameAnim) {
+    typewriterCleanups.value.push(nameAnim.cleanup);
+  }
+
+  rotateInfinite('.neon-circle', {
+    duration: 20
+  });
+
+  cascadeIn('.default-button', {
+    y: 30,
+    stagger: 0.15,
+    delay: 1.2
+  });
+
   if (customSection.value) {
     createFadeUpAnimation(customSection.value.querySelector('.custom-content'), {
       y: 100,
@@ -180,73 +210,75 @@ const downloadCV = () => {
 
 <template>
   <section id="home"
-           class="box flex min-h-[calc(100vh-4rem)] border-b dark:border-slate-800 border-slate-200 flex-col justify-between w-full lg:gap-18 lg:px-20 2xl:w-[1500px] 2xl:mx-auto md:pt-20 pt-10 pb-16 sm:px-10 px-4 gap-16">
-    <div class="flex lg:flex-row flex-grow flex-col-reverse justify-between lg:gap-16 gap-10 items-center h-full">
-      <div class="basis-3/5">
-        <div class="flex flex-col items-center lg:items-start h-full gap-4">
-          <default-badge>{{ $t('home.badge') }}</default-badge>
-          <div class="font-bold">
-            <h1 class="lg:text-6xl text-5xl lg:text-start text-center dark:text-white text-black">{{ $t('home.greeting') }}</h1>
-            <h1 class="lg:text-6xl text-5xl lg:text-start text-center bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
-              {{ $t('home.name') }}
-            </h1>
-          </div>
-          <p class="text-xl lg:text-start text-center dark:text-gray-400 text-slate-500 font-thin">
-            {{ $t('home.subtitle') }}
-          </p>
-          <div class="flex lg:flex-row flex-col gap-8 items-center w-full h-full pt-6">
-            <default-button is="button" bordered @click="downloadCV">
-              {{ $t('home.downloadCV') }}
-              <template #icon>
-                <UIcon class="size-5" name="material-symbols:download"/>
-              </template>
-            </default-button>
-            <div class="flex flex-row gap-4">
-              <default-button is="a" bordered color="secondary" href="https://github.com/Ayolos">
+           class="box min-h-[calc(100vh-4rem)] h-full lg:h-[calc(100vh-4rem)] border-b dark:border-slate-800 border-slate-200">
+    <div class="2xl:w-[1500px] 2xl:mx-auto flex flex-col justify-between lg:gap-18 gap-16 h-full lg:px-20 md:pt-20 pt-10 pb-16 sm:px-10 px-4">
+      <div class="flex lg:flex-row flex-grow flex-col-reverse justify-between lg:gap-16 gap-10 items-center h-full">
+        <div class="basis-3/5">
+          <div class="flex flex-col items-center lg:items-start h-full gap-4">
+            <default-badge>{{ $t('home.badge') }}</default-badge>
+            <div class="font-bold">
+              <h1 class="lg:text-6xl text-5xl lg:text-start text-center dark:text-white text-black">{{ $t('home.greeting') }}</h1>
+              <h1 class="typewritter lg:text-6xl text-5xl lg:text-start text-center bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
+                {{ $t('home.name') }}
+              </h1>
+            </div>
+            <p class="text-xl lg:text-start text-center dark:text-gray-400 text-slate-500 font-thin">
+              {{ $t('home.subtitle') }}
+            </p>
+            <div class="flex lg:flex-row flex-col gap-8 items-center w-full h-full pt-6">
+              <default-button is="button" bordered @click="downloadCV">
+                {{ $t('home.downloadCV') }}
                 <template #icon>
-                  <UIcon class="size-6" name="mdi:github"/>
+                  <UIcon class="size-5" name="material-symbols:download"/>
                 </template>
               </default-button>
-              <default-button is="a" bordered color="secondary"
-                              href="https://www.linkedin.com/in/antoine-andre-465121196/">
-                <template #icon>
-                  <UIcon class="size-6" name="mdi:linkedin"/>
-                </template>
-              </default-button>
+              <div class="flex flex-row gap-4">
+                <default-button is="a" bordered color="secondary" href="https://github.com/Ayolos">
+                  <template #icon>
+                    <UIcon class="size-6" name="mdi:github"/>
+                  </template>
+                </default-button>
+                <default-button is="a" bordered color="secondary"
+                                href="https://www.linkedin.com/in/antoine-andre-465121196/">
+                  <template #icon>
+                    <UIcon class="size-6" name="mdi:linkedin"/>
+                  </template>
+                </default-button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="basis-2/5">
-        <div class="relative overflow-hidden flex items-center justify-end">
-          <img
-              :src="antoine1"
-              alt="Antoine"
-              class="w-[200px] md:w-[300px] lg:min-w-[400px] lg:max-w-[600px] lg:w-full aspect-square bg-cover p-1 dark:mix-blend-lighten"/>
-          <svg ref="circleRef" class="absolute inset-y-0 right-0 w-[200px] md:w-[300px] lg:min-w-[400px] lg:max-w-[600px] lg:w-full h-full overflow-visible">
-            <circle
-                class="neon-circle"
-                cx="50%"
-                cy="50%"
-                fill="none"
-                r="49%"
-                stroke="#ec4899"
-                stroke-dasharray="15, 120, 25, 25"
-                stroke-linecap="round"
-                stroke-width="3"
-            />
-          </svg>
+        <div class="basis-2/5">
+          <div class="relative overflow-hidden flex items-center justify-end">
+            <img
+                :src="antoine1"
+                alt="Antoine"
+                class="w-[200px] md:w-[300px] lg:min-w-[400px] lg:max-w-[600px] lg:w-full aspect-square bg-cover p-1 dark:mix-blend-lighten"/>
+            <svg ref="circleRef" class="absolute inset-y-0 right-0 w-[200px] md:w-[300px] lg:min-w-[400px] lg:max-w-[600px] lg:w-full h-full overflow-visible">
+              <circle
+                  class="neon-circle"
+                  cx="50%"
+                  cy="50%"
+                  fill="none"
+                  r="49%"
+                  stroke="#ec4899"
+                  stroke-dasharray="15, 120, 25, 25"
+                  stroke-linecap="round"
+                  stroke-width="3"
+              />
+            </svg>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="hero hero-content grid grid-cols-2 md:grid-cols-4 gap-16 justify-between items-start rounded-3xl">
-      <k-p-i-text class="hero-content" number="5" :text="$t('home.kpi.experience')"></k-p-i-text>
-      <k-p-i-text class="hero-content" number="6" :text="$t('home.kpi.projects')"></k-p-i-text>
-      <k-p-i-text class="hero-content" number="9" :text="$t('home.kpi.technologies')"></k-p-i-text>
-      <k-p-i-text class="hero-content" number="5" :text="$t('home.kpi.studies')"></k-p-i-text>
+      <div class="hero hero-content grid grid-cols-2 md:grid-cols-4 gap-16 justify-between items-start rounded-3xl">
+        <k-p-i-text class="hero-content" number="5" :text="$t('home.kpi.experience')"></k-p-i-text>
+        <k-p-i-text class="hero-content" number="6" :text="$t('home.kpi.projects')"></k-p-i-text>
+        <k-p-i-text class="hero-content" number="9" :text="$t('home.kpi.technologies')"></k-p-i-text>
+        <k-p-i-text class="hero-content" number="5" :text="$t('home.kpi.studies')"></k-p-i-text>
+      </div>
     </div>
   </section>
-  <section-template id="collaborations">
+  <section-template id="collaborations" bordered>
     <template #title>{{ $t('home.collaborations.title') }}</template>
     <template #description>{{ $t('home.collaborations.description') }}</template>
     <template #extra>
@@ -257,8 +289,8 @@ const downloadCV = () => {
         </default-button>
       </div>
     </template>
-    <div class="flex section-content fade-up flex-row justify-center sm:gap-20 gap-2">
-      <div class="flex flex-row gap-6 card-item">
+    <div class="flex section-content mx-2 fade-up flex-row justify-center sm:gap-20 gap-2">
+      <div class="flex flex-row sm:gap-6 gap-2 card-item">
         <div v-for="companyItem in companyItems">
           <div class="dark:bg-slate-800/50 bg-slate-200/50 border dark:border-slate-800 border-slate-200 rounded-lg sm:p-6 p-3 flex items-center">
             <img :alt="companyItem.name" :src="companyItem.logo" class="h-16"/>
@@ -300,8 +332,8 @@ const downloadCV = () => {
         <div class="absolute right-0 top-0 h-full w-26 bg-gradient-to-l dark:from-slate-950 from-slate-50 to-transparent pointer-events-none"></div>
       </div>
     </template>
-    <div class="flex flex-col gap-6 dark:bg-slate-900 bg-slate-100 border dark:border-slate-800 border-slate-300 px-8 py-10 rounded-lg">
-      <div v-for="aboutItem in aboutMeItems" class="flex flex-row gap-4 items-center">
+    <div class="flex flex-col gap-6 dark:bg-slate-900 bg-slate-100 border dark:border-slate-800 border-slate-300 sm:px-8 sm:py-10 px-4 py-5 rounded-lg">
+      <div v-for="aboutItem in aboutMeItems" class="flex flex-row gap-4 lg:items-center items-start">
         <div class="dark:bg-slate-950 bg-slate-50 flex p-2 rounded-lg border dark:border-slate-800 border-slate-200">
           <UIcon :name="aboutItem.icon" class="size-6 dark:text-white text-black"/>
         </div>

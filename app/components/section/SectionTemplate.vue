@@ -77,13 +77,13 @@ const typeClass = computed(() => {
 
 <template>
   <section :id="props.id"
-           class="px-10 dark:border-slate-800 border-slate-200 isolate bg-gradient-to-b dark:from-slate-900/40 to-40% from-slate-200/40 dark:to-slate-950 to-slate-50"
+           class="px-5 sm:px-10 dark:border-slate-800 border-slate-200 isolate bg-gradient-to-b dark:from-slate-900/40 to-40% from-slate-200/40 dark:to-slate-950 to-slate-50"
            :class="props.bottomBorder ? 'border-b' : ''"
   >
     <div class="w-full gap-18 2xl:w-[1500px] 2xl:mx-auto py-30"
           :class="[props.bordered ? 'border-x dark:border-slate-800 border-slate-200' : '', typeClass]"
     >
-      <div class="w-full" :class="[basisClass, alignClass]">
+      <div class="w-full px-4" :class="[basisClass, alignClass]">
         <h1 class="dark:text-white text-black text-3xl sm:text-4xl lg:text-5xl text-pretty tracking-tight font-bold text-highlighted">
           <slot name="title"></slot>
         </h1>
