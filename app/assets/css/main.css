@@ -13,3 +13,21 @@ html {
     scroll-behavior: smooth;
     background-color: #020617;
 }
+
+@layer base {
+    :root {
+        --title-fill: #000000; /* mode light */
+        --title-empty: rgba(0,0,0,0.2);
+
+        --desc-fill: oklch(55.4% 0.046 257.417);
+        --desc-empty: oklch(86.9% 0.022 252.894);
+    }
+
+    .dark {
+        --title-fill: #ffffff; /* mode dark */
+        --title-empty: oklch(55.4% 0.046 257.417);
+
+        --desc-fill: oklch(55.4% 0.046 257.417);
+        --desc-empty: oklch(20.8% 0.042 265.755);
+    }
+}

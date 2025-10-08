@@ -84,10 +84,10 @@ const typeClass = computed(() => {
           :class="[props.bordered ? 'border-x dark:border-slate-800 border-slate-200' : '', typeClass]"
     >
       <div class="w-full px-4" :class="[basisClass, alignClass]">
-        <h1 class="dark:text-white text-black text-3xl sm:text-4xl lg:text-5xl text-pretty tracking-tight font-bold text-highlighted">
+        <h1 class="title dark:text-white text-black text-3xl sm:text-4xl lg:text-5xl text-pretty tracking-tight font-bold text-highlighted">
           <slot name="title"></slot>
         </h1>
-        <p class="dark:text-slate-400 text-slate-500 text-base sm:text-lg text-muted mt-6">
+        <p class="description dark:text-slate-400 text-slate-500 text-base sm:text-lg text-muted mt-6">
           <slot name="description"></slot>
         </p>
         <slot name="extra"></slot>

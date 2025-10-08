@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import {onMounted, ref} from 'vue';
 import KPIText from "@/components/KPIText.vue";
 import antoine1 from '@/assets/images/antoine.png';
@@ -160,12 +160,21 @@ const values = computed(() => tm('home.aboutMe.words').map(item => typeof item =
 
 
 const {
-  typewriter, rotateInfinite, cascadeIn
+  typewriter, rotateInfinite, cascadeIn, fadeScroll, textFillSequence
 } = useGsapAnimations();
+
+const animationsFadeUp = [
+  { selector: '.collab', options: { y: 80 } },
+  { selector: '.kpi', options: { stagger: 0.2 } },
+];
 
 const typewriterCleanups = ref([]);
 
-onMounted(() => {
+onMounted(async () => {
+  // attend que Vue ait rendu les slots / trads
+  await nextTick();
+
+  // animations existantes
   const nameAnim = typewriter('.typewritter', {
     duration: 2,
     delay: 0.1,
@@ -179,25 +188,49 @@ onMounted(() => {
     typewriterCleanups.value.push(nameAnim.cleanup);
   }
 
-  rotateInfinite('.neon-circle', {
-    duration: 20
+  rotateInfinite('.neon-circle', { duration: 20 });
+
+  cascadeIn('.default-button', { y: 30, stagger: 0.15, delay: 1.2 });
+
+  const sections = Array.from(document.querySelectorAll('section[id], section-template[id]')) as HTMLElement[];
+
+  sections.forEach((section) => {
+    const titleEl = section.querySelector('.title') as HTMLElement | null;
+    const descEl  = section.querySelector('.description') as HTMLElement | null;
+
+    const items = [];
+
+    if (titleEl) items.push({ selector: titleEl, fillColor: 'var(--title-fill)', emptyColor: 'var(--title-empty)', duration: 1.25 });
+    if (descEl)  items.push({ selector: descEl,  fillColor: 'var(--desc-fill)', emptyColor: 'var(--desc-empty)', duration: 1.0 });
+
+    if (items.length) {
+      textFillSequence(items, {
+        splitByLines: true,
+        start: 'top 80%',
+        end: 'top 40%',
+        scrub: 1.8,
+        stagger: 0,
+        gap: 8,
+        markers: false
+      });
+    }
   });
 
-  cascadeIn('.default-button', {
-    y: 30,
-    stagger: 0.15,
-    delay: 1.2
-  });
+  // fadeUp existant
+  const animationsFadeUp = [
+    { selector: '.collab', options: { y: 80 } },
+    { selector: '.kpi', options: {
+        stagger: 0.2,
+        start: 'top 100%',
+        end: 'bottom 50%',
+      } },
+  ];
 
-  if (customSection.value) {
-    createFadeUpAnimation(customSection.value.querySelector('.custom-content'), {
-      y: 100,
-      duration: 1.5,
-      ease: "back.out(1.7)",
-      start: "top 60%"
-    })
-  }
-})
+  animationsFadeUp.forEach(({ selector, options }) => {
+    fadeScroll(selector, options);
+  });
+});
+
 
 const downloadCV = () => {
   const link = document.createElement('a');
@@ -270,11 +303,11 @@ const downloadCV = () => {
           </div>
         </div>
       </div>
-      <div class="hero hero-content grid grid-cols-2 md:grid-cols-4 gap-16 justify-between items-start rounded-3xl">
-        <k-p-i-text class="hero-content" number="5" :text="$t('home.kpi.experience')"></k-p-i-text>
-        <k-p-i-text class="hero-content" number="6" :text="$t('home.kpi.projects')"></k-p-i-text>
-        <k-p-i-text class="hero-content" number="9" :text="$t('home.kpi.technologies')"></k-p-i-text>
-        <k-p-i-text class="hero-content" number="5" :text="$t('home.kpi.studies')"></k-p-i-text>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-16 justify-between items-start rounded-3xl">
+        <k-p-i-text class="kpi" number="5" :text="$t('home.kpi.experience')"></k-p-i-text>
+        <k-p-i-text class="kpi" number="6" :text="$t('home.kpi.projects')"></k-p-i-text>
+        <k-p-i-text class="kpi" number="9" :text="$t('home.kpi.technologies')"></k-p-i-text>
+        <k-p-i-text class="kpi" number="5" :text="$t('home.kpi.studies')"></k-p-i-text>
       </div>
     </div>
   </section>
@@ -289,9 +322,9 @@ const downloadCV = () => {
         </default-button>
       </div>
     </template>
-    <div class="flex section-content mx-2 fade-up flex-row justify-center sm:gap-20 gap-2">
-      <div class="flex flex-row sm:gap-6 gap-2 card-item">
-        <div v-for="companyItem in companyItems">
+    <div class="flex mx-2 fade-up flex-row justify-center sm:gap-20 gap-2">
+      <div class="flex flex-row sm:gap-6 gap-2">
+        <div v-for="companyItem in companyItems" class="collab">
           <div class="dark:bg-slate-800/50 bg-slate-200/50 border dark:border-slate-800 border-slate-200 rounded-lg sm:p-6 p-3 flex items-center">
             <img :alt="companyItem.name" :src="companyItem.logo" class="h-16"/>
           </div>
@@ -303,8 +336,10 @@ const downloadCV = () => {
       </div>
     </div>
   </section-template>
-  <section-template id="aboutMe" type="row" align="left" basis="1/2">
-    <template #title>{{ $t('home.aboutMe.title') }}</template>
+  <section-template class="py-30" id="aboutMe" type="row" align="left" basis="1/2">
+    <template #title>
+        {{ $t('home.aboutMe.title') }}
+    </template>
     <template #description>{{ $t('home.aboutMe.description') }}</template>
     <template #extra>
       <div class="w-full overflow-hidden relative mt-10 py-4 flex">
