@@ -10,23 +10,21 @@ import northbotanica from '@/assets/images/northbotanica.png'
 import symphonyapp from '@/assets/images/symphonyapp.png'
 import topsecret from '@/assets/images/topsecret.png'
 import portfolio from '@/assets/images/portfolio.png'
-import {useScrollAnimations} from '@/composables/useScrollAnimations'
 import DefaultButton from "~/components/button/DefaultButton.vue";
 import DefaultBadge from "~/components/badge/DefaultBadge.vue";
 
-const { t, tm } = useI18n()
+const { t, tm, locale } = useI18n()
 
 
 const imageLoaded = ref(false);
 const circleRef = ref(null);
-const { createFadeUpAnimation } = useScrollAnimations()
 const customSection = ref(null)
 
 const handleImageLoad = () => {
   imageLoaded.value = true;
 };
 
-const items = [
+const items = computed(() =>[
   {
     image: northbotanica,
     description: t('home.projects.northbotanica.description'),
@@ -67,7 +65,7 @@ const items = [
     list: tm('home.projects.portfolio.tasks'),
     techno: ['VueJS', 'Nuxtjs', 'ExpressJS', 'Tailwindcss']
   },
-]
+])
 
 const companyItems = [
   {name: 'Vallourec', logo: vallourec},
@@ -170,10 +168,51 @@ const animationsFadeUp = [
 
 const typewriterCleanups = ref([]);
 
-onMounted(async () => {
-  // attend que Vue ait rendu les slots / trads
-  await nextTick();
+const applyTextFill = async () => {
+  await nextTick(); // attendre que le DOM ait mis à jour le texte
 
+  const sections = Array.from(document.querySelectorAll('section[id], section-template[id]')) as HTMLElement[];
+
+  sections.forEach((section) => {
+    const titleEl = section.querySelector('.title') as HTMLElement | null;
+    const descEl  = section.querySelector('.description') as HTMLElement | null;
+
+    const items = [];
+
+    if (titleEl) items.push({ selector: titleEl, fillColor: 'var(--title-fill)', emptyColor: 'var(--title-empty)', duration: 1 });
+    if (descEl) items.push({ selector: descEl, fillColor: 'var(--desc-fill)', emptyColor: 'var(--desc-empty)', duration: 1 });
+
+    if (items.length) {
+      textFillSequence(items, { splitByLines: true, start: 'top 100%', end: 'top 40%', scrub: 1.8, stagger: 0, gap: 8 });
+    }
+  });
+};
+
+const applyFadeUp = () => {
+  const animationsFadeUp = [
+    { selector: '.collab', options: { y: 80 } },
+    { selector: '.kpi', options: {
+        stagger: 0.2,
+        start: 'top 100%',
+        end: 'bottom 50%',
+      } },
+  ];
+
+  animationsFadeUp.forEach(({ selector, options }) => {
+    fadeScroll(selector, options);
+  });
+}
+
+const localeKey = ref(locale.value);
+
+watch(locale, async (newLocale) => {
+  localeKey.value = newLocale; // déclenche un re-render des slots
+  await nextTick();             // attendre que le DOM ait été mis à jour
+  applyTextFill();
+  applyFadeUp();
+});
+
+onMounted( () => {
   // animations existantes
   const nameAnim = typewriter('.typewritter', {
     duration: 2,
@@ -190,45 +229,8 @@ onMounted(async () => {
 
   rotateInfinite('.neon-circle', { duration: 20 });
 
-  cascadeIn('.default-button', { y: 30, stagger: 0.15, delay: 1.2 });
-
-  const sections = Array.from(document.querySelectorAll('section[id], section-template[id]')) as HTMLElement[];
-
-  sections.forEach((section) => {
-    const titleEl = section.querySelector('.title') as HTMLElement | null;
-    const descEl  = section.querySelector('.description') as HTMLElement | null;
-
-    const items = [];
-
-    if (titleEl) items.push({ selector: titleEl, fillColor: 'var(--title-fill)', emptyColor: 'var(--title-empty)', duration: 1.25 });
-    if (descEl)  items.push({ selector: descEl,  fillColor: 'var(--desc-fill)', emptyColor: 'var(--desc-empty)', duration: 1.0 });
-
-    if (items.length) {
-      textFillSequence(items, {
-        splitByLines: true,
-        start: 'top 80%',
-        end: 'top 40%',
-        scrub: 1.8,
-        stagger: 0,
-        gap: 8,
-        markers: false
-      });
-    }
-  });
-
-  // fadeUp existant
-  const animationsFadeUp = [
-    { selector: '.collab', options: { y: 80 } },
-    { selector: '.kpi', options: {
-        stagger: 0.2,
-        start: 'top 100%',
-        end: 'bottom 50%',
-      } },
-  ];
-
-  animationsFadeUp.forEach(({ selector, options }) => {
-    fadeScroll(selector, options);
-  });
+  applyTextFill();
+  applyFadeUp();
 });
 
 
@@ -311,7 +313,7 @@ const downloadCV = () => {
       </div>
     </div>
   </section>
-  <section-template id="collaborations" bordered>
+  <section-template id="collaborations" :key="localeKey" bordered>
     <template #title>{{ $t('home.collaborations.title') }}</template>
     <template #description>{{ $t('home.collaborations.description') }}</template>
     <template #extra>
@@ -336,7 +338,7 @@ const downloadCV = () => {
       </div>
     </div>
   </section-template>
-  <section-template class="py-30" id="aboutMe" type="row" align="left" basis="1/2">
+  <section-template :key="localeKey" id="aboutMe" type="row" align="left" basis="1/2">
     <template #title>
         {{ $t('home.aboutMe.title') }}
     </template>
@@ -379,7 +381,7 @@ const downloadCV = () => {
       </div>
     </div>
   </section-template>
-  <section-template id="competences">
+  <section-template :key="localeKey" id="competences">
     <template #title>{{ $t('home.skills.title') }}</template>
     <template #description>{{ $t('home.skills.description') }}</template>
     <div class="grid md:grid-cols-3 grid-cols-1">
@@ -413,7 +415,7 @@ const downloadCV = () => {
       </div>
     </div>
   </section-template>
-  <section-template id="technologies">
+  <section-template :key="localeKey" id="technologies">
     <template #title>{{ $t('home.technologies.title') }}</template>
     <template #description>{{ $t('home.technologies.description') }}</template>
     <div v-for="technoItem in technoItems" class="flex flex-col w-full">
@@ -435,7 +437,7 @@ const downloadCV = () => {
       </div>
     </div>
   </section-template>
-  <section-template id="projets" :bottomBorder="false" bordered>
+  <section-template :key="localeKey" id="projets" :bottomBorder="false" bordered>
     <template #title>{{ $t('home.projects.title') }}</template>
     <template #description>{{ $t('home.projects.description') }}</template>
     <UCarousel
