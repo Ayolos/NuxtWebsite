@@ -15,14 +15,7 @@ import DefaultBadge from "~/components/badge/DefaultBadge.vue";
 
 const { t, tm, locale } = useI18n()
 
-
-const imageLoaded = ref(false);
 const circleRef = ref(null);
-const customSection = ref(null)
-
-const handleImageLoad = () => {
-  imageLoaded.value = true;
-};
 
 const items = computed(() =>[
   {
@@ -158,34 +151,19 @@ const values = computed(() => tm('home.aboutMe.words').map(item => typeof item =
 
 
 const {
-  typewriter, rotateInfinite, cascadeIn, fadeScroll, textFillSequence
+  typewriter, rotateInfinite, fadeScroll, textFill
 } = useGsapAnimations();
-
-const animationsFadeUp = [
-  { selector: '.collab', options: { y: 80 } },
-  { selector: '.kpi', options: { stagger: 0.2 } },
-];
 
 const typewriterCleanups = ref([]);
 
-const applyTextFill = async () => {
-  await nextTick(); // attendre que le DOM ait mis à jour le texte
-
-  const sections = Array.from(document.querySelectorAll('section[id], section-template[id]')) as HTMLElement[];
-
-  sections.forEach((section) => {
-    const titleEl = section.querySelector('.title') as HTMLElement | null;
-    const descEl  = section.querySelector('.description') as HTMLElement | null;
-
-    const items = [];
-
-    if (titleEl) items.push({ selector: titleEl, fillColor: 'var(--title-fill)', emptyColor: 'var(--title-empty)', duration: 1 });
-    if (descEl) items.push({ selector: descEl, fillColor: 'var(--desc-fill)', emptyColor: 'var(--desc-empty)', duration: 1 });
-
-    if (items.length) {
-      textFillSequence(items, { splitByLines: true, start: 'top 100%', end: 'top 40%', scrub: 1.8, stagger: 0, gap: 8 });
-    }
-  });
+const applyTextFill = () => {
+  textFill(null, {
+    sections: true,
+    scrub: 2,
+    start: 'top 90%',
+    end: 'bottom 50%',
+    splitByLines: true,
+  })
 };
 
 const applyFadeUp = () => {
@@ -205,9 +183,8 @@ const applyFadeUp = () => {
 
 const localeKey = ref(locale.value);
 
-watch(locale, async (newLocale) => {
-  localeKey.value = newLocale; // déclenche un re-render des slots
-  await nextTick();             // attendre que le DOM ait été mis à jour
+watch(locale, (newLocale) => {
+  localeKey.value = newLocale;
   applyTextFill();
   applyFadeUp();
 });
