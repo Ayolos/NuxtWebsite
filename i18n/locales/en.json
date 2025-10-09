@@ -1,4 +1,22 @@
 {
+  "seo": {
+    "home": {
+      "title": "Antoine André — Fullstack Web Developer",
+      "description": "Portfolio of Antoine André, fullstack web developer specialized in Vue.js, React, Laravel, and Node.js. Discover my projects, skills, and experience."
+    },
+    "resume": {
+      "title": "My Journey — Antoine André",
+      "description": "Learn more about my background, studies, and professional experience in web development."
+    },
+    "passion": {
+      "title": "My Passions — Antoine André",
+      "description": "Discover my passions for coding, music, and fitness."
+    },
+    "contact": {
+      "title": "Contact — Antoine André",
+      "description": "Want to collaborate? Get in touch for a project or opportunity."
+    }
+  },
   "nav": {
     "home": "Home",
     "resume": "Resume",

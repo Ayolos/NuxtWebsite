@@ -4,8 +4,28 @@ import axios from 'axios'
 import gsap from 'gsap'
 import InputForm from "~/components/form/InputForm.vue";
 import DefaultButton from "~/components/button/DefaultButton.vue";
+import {useHead, useSeoMeta} from "#imports";
 
-const { t } = useI18n()
+const { t, locale } = useI18n()
+
+const title = computed(() => t('seo.contact.title'))
+const description = computed(() => t('seo.contact.description'))
+
+useSeoMeta({
+  title,
+  ogTitle: title,
+  description,
+  ogDescription: description,
+  ogImage: '/og-image.png',
+  twitterCard: 'summary_large_image',
+})
+
+useHead({
+  htmlAttrs: { lang: locale.value },
+  link: [
+    { rel: 'canonical', href: 'https://ayolosv2.vercel.app' }
+  ],
+})
 
 // Form state
 const form = ref({

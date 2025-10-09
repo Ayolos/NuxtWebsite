@@ -2,8 +2,28 @@
 import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
 import gsap from 'gsap'
 import DefaultBadge from "~/components/badge/DefaultBadge.vue";
+import {useHead, useSeoMeta} from "#imports";
 
-const { t, tm } = useI18n()
+const { t, tm, locale } = useI18n()
+
+const title = computed(() => t('seo.resume.title'))
+const description = computed(() => t('seo.resume.description'))
+
+useSeoMeta({
+  title,
+  ogTitle: title,
+  description,
+  ogDescription: description,
+  ogImage: '/og-image.png',
+  twitterCard: 'summary_large_image',
+})
+
+useHead({
+  htmlAttrs: { lang: locale.value },
+  link: [
+    { rel: 'canonical', href: 'https://ayolosv2.vercel.app' }
+  ],
+})
 
 // Constants
 const NAVIGATION_BUTTONS = computed(() => [

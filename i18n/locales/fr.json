@@ -1,4 +1,22 @@
 {
+  "seo": {
+    "home": {
+      "title": "Antoine André — Développeur Web Fullstack",
+      "description": "Portfolio d’Antoine André, développeur web fullstack spécialisé en Vue.js, React, Laravel et Node.js. Découvrez mes projets, compétences et mon parcours."
+    },
+    "resume": {
+      "title": "Mon parcours — Antoine André",
+      "description": "Découvrez mon parcours, mes études et mes expériences professionnelles en développement web."
+    },
+    "passion": {
+      "title": "Mes passions — Antoine André",
+      "description": "Découvrez mes passions autour du code, de la musique et du sport."
+    },
+    "contact": {
+      "title": "Contact — Antoine André",
+      "description": "Envie de collaborer ? Contactez-moi pour un projet ou une opportunité."
+    }
+  },
   "nav": {
     "home": "Accueil",
     "resume": "Parcours",

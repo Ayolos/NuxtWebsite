@@ -17,6 +17,25 @@ const { t, tm, locale } = useI18n()
 
 const circleRef = ref(null);
 
+const title = computed(() => t('seo.home.title'))
+const description = computed(() => t('seo.home.description'))
+
+useSeoMeta({
+  title,
+  ogTitle: title,
+  description,
+  ogDescription: description,
+  ogImage: '/og-image.png',
+  twitterCard: 'summary_large_image',
+})
+
+useHead({
+  htmlAttrs: { lang: locale.value },
+  link: [
+    { rel: 'canonical', href: 'https://ayolosv2.vercel.app' }
+  ],
+})
+
 const items = computed(() =>[
   {
     image: northbotanica,

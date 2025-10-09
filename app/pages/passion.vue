@@ -2,15 +2,35 @@
 import DefaultCard from "~/components/card/DefaultCard.vue";
 import { ref, onMounted } from "vue";
 import { useSpotify } from "@/composables/useSpotify";
+import {useHead, useSeoMeta} from "#imports";
 
 const { topTracks, topArtists, loadingArtists, loadingTracks, error, fetchTopTracks, fetchTopArtists, getGenrePercentages } = useSpotify();
+
+const { locale, t } = useI18n()
+
+const title = computed(() => t('seo.passion.title'))
+const description = computed(() => t('seo.passion.description'))
+
+useSeoMeta({
+  title,
+  ogTitle: title,
+  description,
+  ogDescription: description,
+  ogImage: '/og-image.png',
+  twitterCard: 'summary_large_image',
+})
+
+useHead({
+  htmlAttrs: { lang: locale.value },
+  link: [
+    { rel: 'canonical', href: 'https://ayolosv2.vercel.app' }
+  ],
+})
 
 await fetchTopArtists()
 await fetchTopTracks()
 // Suivre le chargement de chaque iframe Spotify
 const iframeLoaded = ref<Record<string, boolean>>({});
-
-console.log('Genres :', getGenrePercentages.value)
 
 function onIframeLoad(id) {
   // Forcer un minimum de délai pour que le lecteur Spotify soit prêt
