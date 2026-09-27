@@ -24,7 +24,7 @@ export default defineNuxtConfig({
     ],
   },
 
-  modules: ['@nuxt/image', '@nuxt/ui', '@nuxtjs/i18n'],
+  modules: ['@nuxt/image', '@nuxt/ui', '@nuxtjs/i18n', '@vercel/analytics'],
 
   i18n: {
     strategy: 'no_prefix',
